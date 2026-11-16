@@ -1,0 +1,26 @@
+{
+  "name": "AYSA ALFAZA — Katalog Kuota",
+  "short_name": "AYSA ALFAZA",
+  "description": "Katalog kuota internet all operator, pesan via WhatsApp.",
+  "lang": "id",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1765c1",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
