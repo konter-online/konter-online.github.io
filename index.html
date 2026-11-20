@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#091b32">
+  <meta name="description" content="AYSA ALFAZA — katalog kuota internet semua operator, cek nomor otomatis & pesan mudah lewat WhatsApp.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <title>AYSA ALFAZA — Katalog Kuota All Operator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07152b;
+      --bg-grad: linear-gradient(160deg, #07152b, #0d2341 55%, #07152b);
+      --panel: #102642;
+      --panel2: #173455;
+      --input-bg: #0c203a;
+      --text: #f0f6ff;
+      --muted: #a8c1df;
+      --line: #294665;
+      --accent: #2585ff;
+      --accent-soft: #66adff;
+      --green: #168450;
+      --green-hover: #1c9c60;
+      --gold: #ffd28b;
+      --danger: #ff9e9e;
+      --op-grad: linear-gradient(135deg, #0864dc, #158bff);
+      --op-color: #66adff;
+      --op-bg: rgba(37, 133, 255, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg-grad);
+      background-attachment: fixed;
+      font: 15px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; transition: all 0.18s ease; }
+    button:active { transform: scale(0.98); }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(9, 27, 50, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap { max-width: 1100px; margin: auto; padding: 0 16px; }
+    .top {
+      min-height: 68px;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      min-width: 0;
+    }
+    .logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 13px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(8, 119, 217, 0.25);
+    }
+    .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .brand-text { min-width: 0; }
+    .brand .small {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-top: 2px;
+    }
+    .btn {
+      background: linear-gradient(120deg, #0877d9, #2b98f0);
+      color: #fff;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn.secondary {
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+    .btn.secondary:hover { border-color: var(--accent-soft); }
+    .top > a.btn {
+      flex: 0 0 auto;
+      white-space: nowrap;
+      background: #0877d9;
+      border: 0;
+      box-shadow: 0 4px 12px rgba(8, 119, 217, 0.28);
+      font-size: 12.5px;
+    }
+    .contact-short { display: none; }
+
+    /* Hero Banner */
+    .hero {
+      margin: 16px 0 14px;
+      padding: 22px 24px;
+      border: 1px solid #2e5d93;
+      border-radius: 20px;
+      background: linear-gradient(120deg, #102b50, #123d70);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .pill {
+      display: inline-block;
+      border: 1px solid #487bb5;
+      border-radius: 99px;
+      padding: 4px 11px;
+      color: #9fcbff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      font-size: clamp(22px, 3.8vw, 34px);
+      margin: 0 0 6px;
+      line-height: 1.18;
+    }
+    .hero h1 span { color: #66adff; }
+    .hero p { color: #b8d2ed; margin: 0; font-size: 14px; }
+    .hero-icon { font-size: 64px; opacity: 0.7; user-select: none; }
+
+    /* Quick Phone Checker Bar */
+    .phone-checker {
+      margin: 14px 0 6px;
+      padding: 12px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .phone-checker-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .phone-input-wrap {
+      position: relative;
+      flex: 1 1 220px;
+      display: flex;
+      align-items: center;
+    }
+    .phone-input-wrap input {
+      padding-right: 36px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .clear-btn {
+      position: absolute;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      padding: 0;
+    }
+    .clear-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+    .clear-btn[hidden] { display: none; }
+    .detected-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 11px;
+      border-radius: 10px;
+      background: var(--op-bg);
+      color: var(--op-color);
+      border: 1px solid currentColor;
+      white-space: nowrap;
+    }
+    .detected-badge[hidden] { display: none; }
+
+    /* Operator Selector */
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 18px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .operators {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+    }
+    .op {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 11px 4px;
+      border-radius: 13px;
+      font-weight: 800;
+      font-size: 13.5px;
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .op::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--op-color, #2585ff);
+      opacity: 0.55;
+    }
+    .op:hover { border-color: var(--op-color, #4a9cff); }
+    .op.active {
+      background: #174d87;
+      color: #fff;
+      border-color: var(--op-color, #4a9cff);
+      box-shadow: 0 0 0 1px var(--op-color, #4a9cff);
+    }
+    .op.active::before { opacity: 1; height: 4px; }
+    .op small {
+      display: block;
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 400;
+    }
+    .op.active small { color: #dbeafe; }
+
+    /* Filters */
+    .filters-box {
+      margin-top: 14px;
+      padding: 12px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .filters-primary {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 9px;
+      align-items: center;
+    }
+    .search-wrap { position: relative; }
+    .search-wrap input { padding-right: 36px; }
+    .filter-toggle {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 13px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .filter-toggle.has-active {
+      border-color: var(--accent-soft);
+      background: #174d87;
+    }
+    .filter-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 99px;
+      font-weight: 800;
+    }
+    .filters-secondary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 9px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      background: var(--input-bg);
+      color: var(--text);
+      border: 1px solid #385775;
+      border-radius: 11px;
+      outline: 0;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 2px rgba(37, 133, 255, 0.2);
+    }
+
+    /* Duration Chips */
+    .chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 13px 0 6px;
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      white-space: nowrap;
+      padding: 7px 13px;
+      background: var(--panel2);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .chip:hover { border-color: var(--accent-soft); }
+    .chip.active {
+      background: #174d87;
+      border-color: #4a9cff;
+      color: #fff;
+    }
+
+    /* Summary Bar */
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 10px 0 12px;
+    }
+
+    /* Product Cards Grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+    .card {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      border: 1px solid #315272;
+      border-radius: 18px;
+      background: #112a49;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+      position: relative;
+    }
+    .card:hover { border-color: var(--op-color, #4898ff); }
+    .quota-badge {
+      min-width: 84px;
+      padding: 12px 6px;
+      text-align: center;
+      border-radius: 13px;
+      background: var(--op-grad);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.12;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .quota-badge small {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      opacity: 0.9;
+      margin-top: 2px;
+      letter-spacing: 0.03em;
+    }
+    .product-main { min-width: 0; }
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+    .op-pill {
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--op-bg);
+      color: var(--op-color);
+    }
+    .value-pill {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(22, 132, 80, 0.25);
+      color: #6ee7b7;
+      border: 1px solid rgba(110, 231, 183, 0.3);
+    }
+    .product-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #fff;
+      overflow-wrap: anywhere;
+    }
+    .product-meta {
+      font-size: 12px;
+      color: #a9c2df;
+      margin-top: 4px;
+      line-height: 1.35;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+    }
+    .terms-btn {
+      background: rgba(255, 210, 139, 0.14);
+      border: 1px solid rgba(255, 210, 139, 0.35);
+      color: var(--gold);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .terms-btn:hover { background: rgba(255, 210, 139, 0.24); }
+    .terms-detail {
+      grid-column: 1 / -1;
+      background: rgba(7, 21, 43, 0.65);
+      border: 1px dashed rgba(255, 210, 139, 0.4);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+    .terms-detail[hidden] { display: none; }
+
+    .product-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .product-promo {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--gold);
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .promo-disc {
+      background: rgba(225, 29, 72, 0.25);
+      color: #fda4af;
+      border: 1px solid rgba(253, 164, 175, 0.35);
+      padding: 1px 5px;
+      border-radius: 5px;
+      font-size: 9.5px;
+    }
+    .product-promo s { color: #94a3b8; font-weight: 500; }
+    .product-price {
+      font-size: 18.5px;
+      font-weight: 900;
+      color: #8fc4ff;
+      white-space: nowrap;
+    }
+    .unit-price {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-top: -3px;
+    }
+    .product-side .order {
+      width: auto;
+      min-width: 90px;
+      padding: 8px 12px;
+      margin-top: 2px;
+      background: var(--green);
+      border-radius: 11px;
+      color: #fff;
+      font-size: 12px;
+    }
+    .product-side .order:hover { background: var(--green-hover); }
+
+    /* Skeleton Loader */
+    @keyframes shimmer {
+      0% { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    .skeleton-card {
+      pointer-events: none;
+      border-color: #213c5c;
+    }
+    .skel {
+      background: linear-gradient(90deg, #163356 25%, #204673 50%, #163356 75%);
+      background-size: 800px 100%;
+      animation: shimmer 1.4s infinite linear;
+      border-radius: 8px;
+    }
+    .skel-badge { width: 84px; height: 64px; border-radius: 13px; }
+    .skel-line { height: 14px; margin-bottom: 8px; width: 80%; }
+    .skel-line.short { width: 50%; height: 11px; margin-bottom: 0; }
+    .skel-btn { width: 86px; height: 34px; border-radius: 10px; }
+
+    /* Empty State */
+    .empty {
+      text-align: center;
+      padding: 36px 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+    }
+    .empty p { margin: 0 0 14px; font-size: 14px; }
+
+    /* Partner Section */
+    .featured-v3 {
+      margin: 28px 0 20px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+    .featured-v3 h2 { font-size: 17px; margin: 0 0 4px; color: var(--text); }
+    .featured-v3 > p { font-size: 12.5px; line-height: 1.5; margin: 0 0 14px; color: var(--muted); }
+    .featured-grid-v3 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+    .featured-tile-v3 {
+      position: relative;
+      overflow: hidden;
+      background: #153555;
+      border: 1px solid #31577d;
+      color: #fff;
+      padding: 15px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+    }
+    .featured-tile-v3 .eyebrow {
+      color: #b7d0ed;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .featured-tile-v3 h3 { font-size: 16.5px; line-height: 1.25; color: #fff; margin: 0; }
+    .featured-tile-v3 p { font-size: 12px; color: #b7d0ed; line-height: 1.4; margin: 0; flex: 1; }
+    .featured-tile-v3 button {
+      background: #1c5b9e;
+      color: #fff;
+      border: 1px solid #3977b8;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      width: 100%;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .featured-tile-v3 button:hover { background: #236cb8; }
+    .featured-all {
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid #53617e;
+      color: #d6d9f7;
+      padding: 9px 14px;
+      border-radius: 10px;
+    }
+    .featured-all[hidden] { display: none; }
+    .featured-filter-v3 { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
+    .featured-filter-v3[hidden] { display: none; }
+    .featured-filter-v3 button {
+      background: #202a48;
+      border: 1px solid #54658a;
+      color: #eee;
+      border-radius: 9px;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    .featured-filter-v3 button.active { background: #174d87; border-color: #4a9cff; }
+
+    /* Info Note & Footer */
+    .note {
+      margin: 18px 0 28px;
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: #b8d2ed;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      padding: 12px 0 42px;
+    }
+
+    /* Checkout Modal */
+    .almida-modal[hidden] { display: none !important; }
+    .almida-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 23, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+    .almida-dialog {
+      position: relative;
+      width: min(100%, 440px);
+      max-height: 92vh;
+      overflow-y: auto;
+      border: 1px solid #3c6596;
+      border-radius: 20px;
+      background: var(--panel);
+      color: var(--text);
+      padding: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+    }
+    .almida-dialog h2 { margin: 0 0 12px; font-size: 19px; }
+    .almida-close {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 0;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+    }
+    .almida-close:hover { background: rgba(255, 255, 255, 0.16); }
+
+    .order-summary-card {
+      background: var(--input-bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px;
+      margin-bottom: 14px;
+    }
+    .order-summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .order-summary-name {
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .order-summary-meta {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .order-summary-price {
+      font-size: 18px;
+      font-weight: 900;
+      color: #8fc4ff;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .order-summary-price span { font-size: 12px; font-weight: 600; color: var(--muted); }
+
+    .almida-dialog label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 12px 0 6px;
+    }
+    .saved-phone-chip {
+      margin-top: 7px;
+      background: rgba(37, 133, 255, 0.15);
+      border: 1px solid rgba(102, 173, 255, 0.4);
+      color: #9fcbff;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .saved-phone-chip:hover { background: rgba(37, 133, 255, 0.25); }
+    .saved-phone-chip[hidden] { display: none; }
+
+    .almida-error {
+      min-height: 18px;
+      font-size: 12px;
+      font-weight: 600;
+      margin: 6px 0 2px;
+      color: var(--danger);
+    }
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .modal-actions .btn { width: 100%; padding: 13px; font-size: 14px; }
+    .modal-actions .btn.wa-btn { background: var(--green); }
+    .modal-actions .btn.wa-btn:hover { background: var(--green-hover); }
+    .almida-help {
+      color: var(--muted);
+      font-size: 11.5px;
+      margin: 10px 0 0;
+      line-height: 1.45;
+    }
+
+    /* Floating Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 20px;
+      z-index: 15;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #174d87;
+      border: 1px solid #4a9cff;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 850px) {
+      .operators { grid-template-columns: repeat(4, 1fr); }
+      .cards { grid-template-columns: 1fr; }
+      .hero-icon { display: none; }
+    }
+
+    @media (max-width: 680px) {
+      .filters-primary { grid-template-columns: 1fr auto; }
+      .filters-primary #sort { grid-column: 1 / -1; }
+      .filter-toggle { display: inline-flex; }
+      .filters-secondary { grid-template-columns: 1fr 1fr; }
+      .filters-secondary #type { grid-column: 1 / -1; }
+      .filters-secondary.collapsed { display: none; }
+    }
+
+    @media (max-width: 530px) {
+      .top { min-height: 62px; }
+      .brand { font-size: 15.5px; gap: 9px; }
+      .brand .small { font-size: 10.5px; }
+      .logo { width: 40px; height: 40px; flex-basis: 40px; }
+      .top > a.btn { width: 40px; height: 40px; padding: 0; font-size: 18px; }
+      .contact-label { display: none; }
+      .contact-short { display: inline; }
+
+      .hero { margin: 12px 0 10px; padding: 15px 16px; border-radius: 16px; }
+      .hero .pill { display: none; }
+      .hero h1 { font-size: 20px; margin-bottom: 4px; }
+      .hero p { font-size: 12.5px; }
+
+      .phone-checker { padding: 10px 12px; gap: 8px; }
+      .phone-checker-label { font-size: 12px; }
+
+      .op { font-size: 12px; padding: 9px 3px; min-height: 56px; }
+      .op small { font-size: 9.5px; }
+
+      .card {
+        grid-template-columns: 74px minmax(0, 1fr) auto;
+        gap: 9px;
+        padding: 11px 10px;
+        border-radius: 15px;
+      }
+      .quota-badge { min-width: 74px; padding: 11px 4px; font-size: 18px; }
+      .product-name { font-size: 13.5px; }
+      .product-meta { font-size: 11px; }
+      .product-price { font-size: 16px; }
+      .product-side .order { min-width: 76px; padding: 8px 8px; font-size: 11px; }
+
+      .featured-v3 { padding: 14px; }
+      .featured-tile-v3 { padding: 12px; }
+      .featured-tile-v3 h3 { font-size: 14.5px; }
+      .featured-tile-v3 p { font-size: 11px; }
+      .featured-tile-v3 button { font-size: 11px; padding: 8px; }
+    }
+
+    @media (max-width: 360px) {
+      .brand { font-size: 13.5px; }
+      .card { grid-template-columns: 66px minmax(0, 1fr) auto; gap: 7px; padding: 10px 8px; }
+      .quota-badge { min-width: 66px; font-size: 15.5px; }
+      .product-name { font-size: 12.5px; }
+      .product-price { font-size: 14.5px; }
+      .product-side .order { min-width: 66px; font-size: 10.5px; padding: 7px 5px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">
+        <div class="logo">
+          <img src="./icons/icon-192.png" alt="Logo AYSA ALFAZA">
+        </div>
+        <div class="brand-text">
+          AYSA ALFAZA
+          <div class="small">Katalog Kuota All Operator</div>
+        </div>
+      </div>
+      <a class="btn secondary" href="https://wa.me/6285715409193" target="_blank" rel="noopener noreferrer" aria-label="Hubungi Admin via WhatsApp">
+        <span class="contact-label">Hubungi Admin</span>
+        <span class="contact-short">☏</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="pill">✦ AYSA ALFAZA • DATA STORE</span>
+        <h1>Kuota Internet Favoritmu, <span>Semudah Itu.</span></h1>
+        <p>Cek nomor otomatis atau pilih operator, lalu pesan langsung via WhatsApp.</p>
+      </div>
+      <div class="hero-icon" aria-hidden="true">◉</div>
+    </section>
+
+    <!-- Quick Phone Auto-Detect Bar -->
+    <div class="phone-checker">
+      <label class="phone-checker-label" for="quickPhone">📱 Cek Nomor:</label>
+      <div class="phone-input-wrap">
+        <input id="quickPhone" type="tel" inputmode="numeric" placeholder="Ketik 08xx untuk deteksi operator otomatis..." maxlength="16" aria-label="Cek operator dari nomor HP">
+        <button type="button" id="clearQuickPhone" class="clear-btn" hidden aria-label="Hapus nomor">✕</button>
+      </div>
+      <span id="detectedOpBadge" class="detected-badge" hidden></span>
+    </div>
+
+    <div class="section-title">Pilih Operator</div>
+    <div id="operators" class="operators"></div>
+
+    <div class="filters-box">
+      <div class="filters-primary">
+        <div class="search-wrap">
+          <input id="search" placeholder="🔎 Cari paket, kuota (mis. 10 GB), atau kode..." aria-label="Cari paket">
+          <button type="button" id="clearSearch" class="clear-btn" hidden aria-label="Hapus pencarian">✕</button>
+        </div>
+        <button type="button" id="toggleFilters" class="filter-toggle" aria-expanded="false" aria-controls="secondaryFilters">
+          ⚙️ Filter <span id="filterBadge" class="filter-badge" hidden>0</span>
+        </button>
+        <select id="sort" aria-label="Urutkan">
+          <option value="recommended">Urutkan: Rekomendasi</option>
+          <option value="cheap">Harga termurah</option>
+          <option value="large">Kuota terbesar</option>
+          <option value="long">Masa aktif terlama</option>
+        </select>
+      </div>
+      <div id="secondaryFilters" class="filters-secondary collapsed">
+        <select id="priceFilter" aria-label="Rentang harga">
+          <option value="all">Semua harga</option>
+          <option value="25000">≤ Rp25.000</option>
+          <option value="50000">≤ Rp50.000</option>
+          <option value="100000">≤ Rp100.000</option>
+          <option value="100001">Di atas Rp100.000</option>
+        </select>
+        <select id="quotaFilter" aria-label="Minimal kuota">
+          <option value="0">Semua kuota</option>
+          <option value="1">Minimal 1 GB</option>
+          <option value="5">Minimal 5 GB</option>
+          <option value="10">Minimal 10 GB</option>
+          <option value="20">Minimal 20 GB</option>
+          <option value="50">Minimal 50 GB</option>
+        </select>
+        <select id="type" aria-label="Jenis produk">
+          <option value="standard">Paket umum</option>
+          <option value="all">Semua paket (termasuk bersyarat)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="chips" class="chips"></div>
+    <div class="summary">
+      <span id="count">Memuat katalog...</span>
+      <span id="pageInfo"></span>
+    </div>
+    <div id="cards" class="cards"></div>
+
+    <div style="text-align:center;margin:20px">
+      <button class="btn secondary" id="more" style="display:none">Tampilkan lebih banyak ↓</button>
+    </div>
+
+    <section class="featured-v3" aria-label="Produk unggulan">
+      <h2>🤝 Rekomendasi Mitra</h2>
+      <p>Untuk Paket Akrab dan XL Spesial Harian, kunjungi mitra kami, ALMIDA STORE.</p>
+      <div class="featured-grid-v3">
+        <div class="featured-tile-v3">
+          <span class="eyebrow">PAKET BULANAN</span>
+          <h3>👥 Paket Akrab</h3>
+          <p>Kuota keluarga/bersama harga hemat di ALMIDA STORE.</p>
+          <button type="button" id="v3Akrab">Lihat di ALMIDA ↗</button>
+        </div>
+        <div class="featured-tile-v3 daily">
+          <span class="eyebrow">PAKET HARIAN</span>
+          <h3>⚡ XL Spesial Harian</h3>
+          <p>Paket masa aktif singkat tersedia di ALMIDA STORE.</p>
+          <button type="button" id="v3Daily">Lihat di ALMIDA ↗</button>
+        </div>
+      </div>
+      <button type="button" class="featured-all" hidden id="v3All">Lihat Semua Produk</button>
+      <div class="featured-filter-v3" id="v3Areas" hidden aria-label="Filter area Paket Akrab">
+        <button data-area="0" class="active">Semua Area</button>
+        <button data-area="1">Area 1</button>
+        <button data-area="2">Area 2</button>
+        <button data-area="3">Area 3</button>
+        <button data-area="4">Area 4</button>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>ℹ Informasi Penting • Mitra ALMIDA STORE</strong><br>
+      Harga dan ketersediaan paket dapat berubah sewaktu-waktu. Pastikan nomor tujuan dan jenis paket sudah sesuai sebelum melakukan pemesanan. Hubungi admin AYSA ALFAZA untuk konfirmasi lebih lanjut.
+    </div>
+  </main>
+
+  <!-- Checkout Modal -->
+  <div id="orderModal" class="almida-modal" hidden>
+    <div class="almida-dialog" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+      <button type="button" id="orderClose" class="almida-close" aria-label="Tutup">✕</button>
+      <h2 id="orderTitle">Konfirmasi Pesanan</h2>
+
+      <div id="orderSummaryCard" class="order-summary-card"></div>
+
+      <label for="targetPhone">Nomor tujuan paket</label>
+      <input id="targetPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="08xx-xxxx-xxxx" maxlength="16">
+      <button type="button" id="useSavedPhone" class="saved-phone-chip" hidden></button>
+      <p id="phoneError" class="almida-error" role="alert"></p>
+
+      <label for="buyerNote">Catatan tambahan (opsional)</label>
+      <textarea id="buyerNote" rows="2" maxlength="180" placeholder="Contoh: Mohon cek area / masa aktif kartu"></textarea>
+
+      <div class="modal-actions">
+        <button type="button" id="orderSend" class="btn wa-btn">Lanjut ke WhatsApp ↗</button>
+        <button type="button" id="orderCopy" class="btn secondary">📋 Salin Format Pesanan</button>
+      </div>
+      <p class="almida-help">Pesanan belum diproses sampai admin mengonfirmasi ketersediaan dan pembayaran.</p>
+    </div>
+  </div>
+
+  <button type="button" id="backToTop" class="back-to-top" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+  <footer>© AYSA ALFAZA • Checkout WhatsApp • Mitra: ALMIDA STORE</footer>
+
+  <script>
+    let PRODUCTS = [];
+    let isLoading = true;
+    const OP = ['Telkomsel', 'Indosat', 'XL', 'AXIS', 'Tri', 'Smartfren', 'by.U'];
+
+    // Brand color themes per operator
+    const OP_THEME = {
+      Semua:     { color: '#66adff', grad: 'linear-gradient(135deg, #0864dc, #158bff)', bg: 'rgba(37, 133, 255, 0.16)' },
+      Telkomsel: { color: '#fb7185', grad: 'linear-gradient(135deg, #e11d48, #be123c)', bg: 'rgba(225, 29, 72, 0.18)' },
+      Indosat:   { color: '#fbbf24', grad: 'linear-gradient(135deg, #d97706, #b45309)', bg: 'rgba(217, 119, 6, 0.18)' },
+      XL:        { color: '#38bdf8', grad: 'linear-gradient(135deg, #0284c7, #0369a1)', bg: 'rgba(2, 132, 199, 0.18)' },
+      AXIS:      { color: '#c084fc', grad: 'linear-gradient(135deg, #7c3aed, #6d28d9)', bg: 'rgba(124, 58, 237, 0.18)' },
+      Tri:       { color: '#f472b6', grad: 'linear-gradient(135deg, #db2777, #be185d)', bg: 'rgba(219, 39, 119, 0.18)' },
+      Smartfren: { color: '#fda4af', grad: 'linear-gradient(135deg, #e11d48, #9f1239)', bg: 'rgba(225, 29, 72, 0.18)' },
+      'by.U':    { color: '#22d3ee', grad: 'linear-gradient(135deg, #0891b2, #0e7490)', bg: 'rgba(8, 145, 178, 0.18)' }
+    };
+
+    // Indonesian mobile operator prefix map
+    const PREFIX_MAP = {
+      Telkomsel: ['0811', '0812', '0813', '0821', '0822', '0823', '0852', '0853'],
+      'by.U':    ['0851'],
+      Indosat:   ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+      XL:        ['0817', '0818', '0819', '0859', '0877', '0878'],
+      AXIS:      ['0831', '0832', '0833', '0838'],
+      Tri:       ['0895', '0896', '0897', '0898', '0899'],
+      Smartfren: ['0881', '0882', '0883', '0884', '0885', '0886', '0887', '0888', '0889']
+    };
+
+    let selectedOp = 'Semua';
+    let selectedDays = 0;
+    let shown = 24;
+    let v3Featured = 'all';
+    let v3Area = 0;
+    let selectedOrder = null;
+
+    const $ = id => document.getElementById(id);
+    const money = n => 'Rp' + Math.round(n).toLocaleString('id-ID');
+    const safe = t => String(t).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+
+    function getTheme(op) {
+      return OP_THEME[op] || OP_THEME.Semua;
+    }
+
+    function normalizePhone(raw) {
+      let digits = String(raw || '').replace(/\D/g, '');
+      if (digits.startsWith('62') && digits.length >= 4) {
+        digits = '0' + digits.slice(2);
+      }
+      return digits.slice(0, 13);
+    }
+
+    function formatPhoneDisplay(raw) {
+      const digits = normalizePhone(raw);
+      const parts = [digits.slice(0, 4), digits.slice(4, 8), digits.slice(8, 13)].filter(Boolean);
+      return parts.join('-');
+    }
+
+    function detectOperator(phone) {
+      const clean = normalizePhone(phone);
+      if (clean.length < 4) return null;
+      const prefix = clean.slice(0, 4);
+      for (const [op, list] of Object.entries(PREFIX_MAP)) {
+        if (list.includes(prefix)) return op;
+      }
+      return null;
+    }
+
+    function standard(p) {
+      return p.category === 'Paket Akrab' ||
+        p.category === 'XL Spesial Harian' ||
+        (!p.restricted && !/topping|aplikasi|unlimited|malam|game|streaming|youtube|viu|netflix|spotify|tiktok|sosmed|chat|lokal|regional|zona|kuota belajar|edukasi|byu cetak|voucher|cetak|inject|promo khusus/i.test(p.name + ' ' + p.category));
+    }
+
+    function updateFilterBadge() {
+      let activeCount = 0;
+      if ($('priceFilter').value !== 'all') activeCount++;
+      if ($('quotaFilter').value !== '0') activeCount++;
+      if ($('type').value !== 'standard') activeCount++;
+      const badge = $('filterBadge');
+      const toggle = $('toggleFilters');
+      badge.textContent = activeCount;
+      badge.hidden = activeCount === 0;
+      toggle.classList.toggle('has-active', activeCount > 0);
+    }
+
+    function resetAllFilters() {
+      selectedOp = 'Semua';
+      selectedDays = 0;
+      v3Featured = 'all';
+      v3Area = 0;
+      shown = 24;
+      $('search').value = '';
+      $('clearSearch').hidden = true;
+      $('quickPhone').value = '';
+      $('clearQuickPhone').hidden = true;
+      $('detectedOpBadge').hidden = true;
+      $('sort').value = 'recommended';
+      $('priceFilter').value = 'all';
+      $('quotaFilter').value = '0';
+      $('type').value = 'standard';
+      $('v3Areas').hidden = true;
+      updateFilterBadge();
+      renderOps();
+      renderChips();
+      render();
+    }
+
+    function filters() {
+      const q = $('search').value.trim().toLowerCase();
+      const priceVal = $('priceFilter').value;
+      const quotaVal = Number($('quotaFilter').value);
+      const typeVal = $('type').value;
+
+      return PRODUCTS.filter(p =>
+        (selectedOp === 'Semua' || p.operator === selectedOp) &&
+        (!selectedDays || p.days === selectedDays) &&
+        (typeVal === 'all' || standard(p)) &&
+        (!p.hidden) &&
+        (v3Featured === 'all' || (v3Featured === 'akrab' ? p.category === 'Paket Akrab' && (!v3Area || Number(p.area) === v3Area) : p.category === 'XL Spesial Harian')) &&
+        (priceVal === 'all' || (priceVal === '100001' ? p.price > 100000 : p.price <= Number(priceVal))) &&
+        (Number(p.gb) >= quotaVal) &&
+        (`${p.name} ${p.id} ${p.gb} ${p.operator} ${p.category} ${p.days} hari`.toLowerCase().includes(q))
+      );
+    }
+
+    function renderSkeletons() {
+      $('count').textContent = 'Memuat katalog produk...';
+      $('pageInfo').textContent = '';
+      $('more').style.display = 'none';
+      const cardsEl = $('cards');
+      cardsEl.innerHTML = '';
+      for (let i = 0; i < 6; i++) {
+        const sk = document.createElement('div');
+        sk.className = 'card skeleton-card';
+        sk.innerHTML = `
+          <div class="skel skel-badge"></div>
+          <div class="product-main">
+            <div class="skel skel-line" style="width:35%;height:11px"></div>
+            <div class="skel skel-line"></div>
+            <div class="skel skel-line short"></div>
+          </div>
+          <div class="product-side">
+            <div class="skel skel-line" style="width:72px;height:16px"></div>
+            <div class="skel skel-btn"></div>
+          </div>`;
+        cardsEl.appendChild(sk);
+      }
+    }
+
+    function render() {
+      if (isLoading) {
+        renderSkeletons();
+        return;
+      }
+
+      let list = filters();
+      const sort = $('sort').value;
+      if (sort === 'cheap') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (sort === 'large') {
+        list.sort((a, b) => b.gb - a.gb || a.price - b.price);
+      } else if (sort === 'long') {
+        list.sort((a, b) => b.days - a.days || a.price - b.price);
+      } else {
+        list.sort((a, b) =>
+          Number(standard(b)) - Number(standard(a)) ||
+          a.days - b.days ||
+          a.price / Math.max(a.gb, 1) - b.price / Math.max(b.gb, 1)
+        );
+      }
+
+      // Find best value (lowest price/GB) among standard packages with >= 3 GB
+      let bestValueId = null;
+      let bestRatio = Infinity;
+      for (const item of list) {
+        if (item.gb >= 3 && standard(item)) {
+          const ratio = item.price / item.gb;
+          if (ratio < bestRatio) {
+            bestRatio = ratio;
+            bestValueId = item.id;
+          }
+        }
+      }
+
+      $('count').textContent = `${list.length.toLocaleString('id-ID')} paket ditemukan`;
+      $('pageInfo').textContent = list.length ? `Menampilkan ${Math.min(shown, list.length)}` : '';
+
+      const cardsEl = $('cards');
+      cardsEl.innerHTML = '';
+
+      for (const p of list.slice(0, shown)) {
+        const theme = getTheme(p.operator);
+        const isBestValue = p.id === bestValueId && list.length > 2;
+        const unitPrice = p.gb > 0 ? `${money(p.price / p.gb)}/GB` : '';
+        const hasPromo = p.promoActive && p.originalPrice > p.price;
+        const discPct = hasPromo ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+        const isConditional = p.restricted || !standard(p);
+
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.style.setProperty('--op-grad', theme.grad);
+        card.style.setProperty('--op-color', theme.color);
+        card.style.setProperty('--op-bg', theme.bg);
+
+        const termsText = p.description
+          ? safe(p.description)
+          : 'Paket bersyarat: dapat berlaku khusus area/zona tertentu, aplikasi tertentu, atau nomor terpilih. Admin akan mengecek kecocokan nomor tujuan sebelum pembayaran.';
+
+        card.innerHTML = `
+          <div class="quota-badge">
+            ${Number(p.gb) > 0 ? Number(p.gb).toLocaleString('id-ID') + ' GB' : 'Paket'}
+            <small>${p.days} HARI</small>
+          </div>
+          <div class="product-main">
+            <div class="product-tags">
+              <span class="op-pill">${safe(p.operator)}</span>
+              ${isBestValue ? '<span class="value-pill">★ Paling Hemat</span>' : ''}
+            </div>
+            <div class="product-name">${safe(p.name)}</div>
+            <div class="product-meta">
+              <span>${p.days} hari</span>
+              ${p.category === 'Paket Akrab' ? `<span>• Area ${safe(p.area || '?')}</span>` : ''}
+              ${isConditional ? '<button type="button" class="terms-btn" aria-expanded="false">ℹ Cek syarat</button>' : ''}
+            </div>
+          </div>
+          <div class="product-side">
+            ${hasPromo ? `<div class="product-promo">${discPct >= 5 ? `<span class="promo-disc">-${discPct}%</span>` : ''}<s>${money(p.originalPrice)}</s></div>` : ''}
+            <div class="product-price">${money(p.price)}</div>
+            ${unitPrice ? `<div class="unit-price">${unitPrice}</div>` : ''}
+            <button type="button" class="btn order" aria-label="Pesan ${safe(p.name)} via WhatsApp">Order WA</button>
+          </div>
+          ${isConditional ? `<div class="terms-detail" hidden>${termsText}</div>` : ''}
+        `;
+
+        card.querySelector('.order').addEventListener('click', () => openOrder(p));
+
+        const termsBtn = card.querySelector('.terms-btn');
+        if (termsBtn) {
+          const termsDetail = card.querySelector('.terms-detail');
+          termsBtn.addEventListener('click', () => {
+            const willOpen = termsDetail.hidden;
+            termsDetail.hidden = !willOpen;
+            termsBtn.setAttribute('aria-expanded', String(willOpen));
+          });
+        }
+
+        cardsEl.appendChild(card);
+      }
+
+      if (!list.length) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'empty';
+        emptyDiv.innerHTML = `
+          <p>Belum ada paket yang cocok dengan filter saat ini.</p>
+          <button type="button" class="btn secondary" id="emptyResetBtn">↻ Reset Semua Filter</button>
+        `;
+        emptyDiv.querySelector('#emptyResetBtn').addEventListener('click', resetAllFilters);
+        cardsEl.appendChild(emptyDiv);
+      }
+
+      $('more').style.display = shown < list.length ? 'inline-block' : 'none';
+    }
+
+    function renderOps() {
+      const opsEl = $('operators');
+      opsEl.innerHTML = '';
+      for (const op of ['Semua', ...OP]) {
+        const theme = getTheme(op);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'op' + (op === selectedOp ? ' active' : '');
+        b.style.setProperty('--op-color', theme.color);
+        b.innerHTML = `${safe(op === 'Semua' ? '✦ Semua' : op)}<small>${op === 'Semua' ? 'Semua operator' : 'Paket data'}</small>`;
+        b.onclick = () => {
+          v3Featured = 'all';
+          $('v3Areas').hidden = true;
+          selectedOp = op;
+          shown = 24;
+          renderOps();
+          render();
+        };
+        opsEl.appendChild(b);
+      }
+    }
+
+    function renderChips() {
+      const chipsEl = $('chips');
+      chipsEl.innerHTML = '';
+      for (const d of [0, 1, 2, 3, 5, 7, 14, 28, 30]) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'chip' + (d === selectedDays ? ' active' : '');
+        b.textContent = d ? d + ' hari' : 'Semua masa aktif';
+        b.onclick = () => {
+          selectedDays = d;
+          shown = 24;
+          renderChips();
+          render();
+        };
+        chipsEl.appendChild(b);
+      }
+    }
+
+    // Quick Phone Auto-Detector Events
+    $('quickPhone').addEventListener('input', e => {
+      const formatted = formatPhoneDisplay(e.target.value);
+      e.target.value = formatted;
+      $('clearQuickPhone').hidden = formatted.length === 0;
+
+      const detected = detectOperator(formatted);
+      const badge = $('detectedOpBadge');
+      if (detected) {
+        const theme = getTheme(detected);
+        badge.hidden = false;
+        badge.textContent = `✓ Terdeteksi: ${detected}`;
+        badge.style.setProperty('--op-color', theme.color);
+        badge.style.setProperty('--op-bg', theme.bg);
+        if (selectedOp !== detected) {
+          selectedOp = detected;
+          v3Featured = 'all';
+          $('v3Areas').hidden = true;
+          shown = 24;
+          renderOps();
+          render();
+        }
+      } else {
+        badge.hidden = true;
+      }
+    });
+
+    $('clearQuickPhone').addEventListener('click', () => {
+      $('quickPhone').value = '';
+      $('clearQuickPhone').hidden = true;
+      $('detectedOpBadge').hidden = true;
+      selectedOp = 'Semua';
+      shown = 24;
+      renderOps();
+      render();
+      $('quickPhone').focus();
+    });
+
+    // Search clear button & filter toggle
+    $('search').addEventListener('input', e => {
+      $('clearSearch').hidden = e.target.value.length === 0;
+      shown = 24;
+      render();
+    });
+
+    $('clearSearch').addEventListener('click', () => {
+      $('search').value = '';
+      $('clearSearch').hidden = true;
+      shown = 24;
+      render();
+      $('search').focus();
+    });
+
+    $('toggleFilters').addEventListener('click', () => {
+      const sec = $('secondaryFilters');
+      const isCollapsed = sec.classList.toggle('collapsed');
+      $('toggleFilters').setAttribute('aria-expanded', String(!isCollapsed));
+    });
+
+    ['sort', 'type', 'priceFilter', 'quotaFilter'].forEach(id => {
+      $(id).addEventListener('change', () => {
+        updateFilterBadge();
+        shown = 24;
+        render();
+      });
+    });
+
+    // Partner section handlers
+    function v3Select(kind) {
+      v3Featured = kind;
+      v3Area = 0;
+      selectedOp = 'Semua';
+      selectedDays = 0;
+      shown = 24;
+      $('search').value = '';
+      $('clearSearch').hidden = true;
+      $('type').value = 'all';
+      $('priceFilter').value = 'all';
+      $('quotaFilter').value = '0';
+      updateFilterBadge();
+      $('v3Areas').hidden = kind !== 'akrab';
+      $('v3Areas').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.area === '0'));
+      renderOps();
+      renderChips();
+      render();
+      $('count').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    $('v3Akrab').onclick = () => window.open('https://cek-area.github.io/almida-store/', '_blank', 'noopener,noreferrer');
+    $('v3Daily').onclick = () => window.open('https://cek-area.github.io/almida-store/', '_blank', 'noopener,noreferrer');
+    $('v3All').onclick = () => v3Select('all');
+    $('v3Areas').querySelectorAll('button').forEach(b => {
+      b.onclick = () => {
+        v3Area = Number(b.dataset.area);
+        $('v3Areas').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+        shown = 24;
+        render();
+      };
+    });
+
+    $('more').onclick = () => {
+      shown += 24;
+      render();
+    };
+
+    // Back to top button
+    const backBtn = $('backToTop');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('show', window.scrollY > 380);
+    }, { passive: true });
+    backBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Catalog Updater
+    window.aysaUpdateCatalog = items => {
+      if (!Array.isArray(items)) return;
+      isLoading = false;
+      PRODUCTS = items
+        .filter(p => p && p.id && p.operator && Number.isFinite(Number(p.price)))
+        .map(p => ({
+          id: String(p.id),
+          operator: String(p.operator),
+          name: String(p.name || ''),
+          days: Number(p.days) || 0,
+          gb: Number(p.gb) || 0,
+          category: String(p.category || ''),
+          restricted: !!p.restricted,
+          price: Number(p.price),
+          area: Number(p.area) || 0,
+          originalPrice: Number(p.originalPrice) || 0,
+          promoActive: !!p.promoActive,
+          description: p.description ? String(p.description) : ''
+        }));
+      shown = 24;
+      renderOps();
+      renderChips();
+      render();
+    };
+
+    // Checkout Modal Logic
+    function checkModalPhoneMatch(val) {
+      const errEl = $('phoneError');
+      if (!selectedOrder) {
+        errEl.textContent = '';
+        return;
+      }
+      const detected = detectOperator(val);
+      if (!detected) {
+        errEl.textContent = '';
+        return;
+      }
+      if (detected.toLowerCase() !== selectedOrder.operator.toLowerCase()) {
+        errEl.style.color = '#ffd28b';
+        errEl.textContent = `⚠️ Nomor terdeteksi sebagai ${detected}, pastikan paket ${selectedOrder.operator} ini memang sesuai.`;
+      } else {
+        errEl.style.color = '#7ee787';
+        errEl.textContent = `✓ Nomor sesuai (${detected})`;
+      }
+    }
+
+    function openOrder(p) {
+      selectedOrder = p;
+      const theme = getTheme(p.operator);
+
+      $('orderSummaryCard').innerHTML = `
+        <div class="order-summary-top">
+          <span class="op-pill" style="background:${theme.bg};color:${theme.color}">${safe(p.operator)}</span>
+          <span style="font-size:11.5px;color:var(--muted)">Kode: ${safe(p.id)}</span>
+        </div>
+        <div class="order-summary-name">${safe(p.name)}</div>
+        <div class="order-summary-meta">
+          Kuota: ${Number(p.gb) > 0 ? Number(p.gb).toLocaleString('id-ID') + ' GB' : 'Paket'} • Masa aktif: ${p.days} hari${p.category === 'Paket Akrab' ? ' • Area ' + safe(p.area || '?') : ''}
+        </div>
+        <div class="order-summary-price">
+          <span>Total Pembayaran</span>
+          <strong>${money(p.price)}</strong>
+        </div>
+      `;
+
+      $('buyerNote').value = '';
+      $('phoneError').textContent = '';
+
+      // Pre-fill from quickPhone if entered, otherwise check localStorage
+      const quickVal = normalizePhone($('quickPhone').value);
+      let savedPhone = '';
+      try {
+        savedPhone = normalizePhone(localStorage.getItem('aysa_last_phone') || '');
+      } catch (e) {}
+
+      const savedChip = $('useSavedPhone');
+      if (quickVal.length >= 4) {
+        $('targetPhone').value = formatPhoneDisplay(quickVal);
+        checkModalPhoneMatch(quickVal);
+      } else {
+        $('targetPhone').value = '';
+      }
+
+      if (savedPhone && /^08[0-9]{8,11}$/.test(savedPhone) && savedPhone !== quickVal) {
+        savedChip.hidden = false;
+        savedChip.textContent = `📋 Gunakan nomor terakhir: ${formatPhoneDisplay(savedPhone)}`;
+        savedChip.onclick = () => {
+          $('targetPhone').value = formatPhoneDisplay(savedPhone);
+          checkModalPhoneMatch(savedPhone);
+          savedChip.hidden = true;
+        };
+      } else {
+        savedChip.hidden = true;
+      }
+
+      $('orderModal').hidden = false;
+      $('targetPhone').focus();
+    }
+
+    function closeOrder() {
+      $('orderModal').hidden = true;
+      selectedOrder = null;
+    }
+
+    $('targetPhone').addEventListener('input', e => {
+      const formatted = formatPhoneDisplay(e.target.value);
+      e.target.value = formatted;
+      checkModalPhoneMatch(formatted);
+    });
+
+    $('orderClose').onclick = closeOrder;
+    $('orderModal').addEventListener('click', e => {
+      if (e.target === $('orderModal')) closeOrder();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !$('orderModal').hidden) closeOrder();
+    });
+
+    function buildOrderMessage() {
+      if (!selectedOrder) return null;
+      const p = selectedOrder;
+      const normalized = normalizePhone($('targetPhone').value);
+      if (!/^08[0-9]{8,11}$/.test(normalized)) {
+        $('phoneError').style.color = '#ff9e9e';
+        $('phoneError').textContent = 'Masukkan nomor Indonesia yang valid, diawali 08 (10–13 digit).';
+        $('targetPhone').focus();
+        return null;
+      }
+
+      try {
+        localStorage.setItem('aysa_last_phone', normalized);
+      } catch (e) {}
+
+      const note = $('buyerNote').value.trim();
+      return `Halo AYSA ALFAZA! 👋
+Saya ingin memesan paket data:
+
+Operator: ${p.operator}
+Paket: ${p.name}
+Kode: ${p.id}
+Kuota: ${p.gb} GB
+Masa aktif: ${p.days} hari${p.category === 'Paket Akrab' ? '
+Area: ' + p.area : ''}
+Harga: ${money(p.price)}
+Nomor tujuan: ${normalized}${note ? '
+Catatan: ' + note : ''}
+
+Mohon konfirmasi ketersediaan, kecocokan paket, dan pembayaran. Terima kasih!`;
+    }
+
+    $('orderSend').onclick = () => {
+      const msg = buildOrderMessage();
+      if (!msg) return;
+      const url = 'https://wa.me/6285715409193?text=' + encodeURIComponent(msg);
+      const tab = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!tab) window.location.href = url;
+      closeOrder();
+    };
+
+    $('orderCopy').onclick = async () => {
+      const msg = buildOrderMessage();
+      if (!msg) return;
+      const btn = $('orderCopy');
+      try {
+        await navigator.clipboard.writeText(msg);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = msg;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      const orig = btn.textContent;
+      btn.textContent = '✓ Format pesanan tersalin!';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    };
+
+    // Initial render with skeletons
+    renderOps();
+    renderChips();
+    render();
+  </script>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import { getFirestore, collection, query, where, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+    const app = initializeApp({
+      apiKey: 'AIzaSyBZht1cTG__sVLhP8T-6jRctG8MeOGJ7Qw',
+      authDomain: 'aysa-alfaza.firebaseapp.com',
+      projectId: 'aysa-alfaza',
+      storageBucket: 'aysa-alfaza.firebasestorage.app',
+      messagingSenderId: '1081480695574',
+      appId: '1:1081480695574:web:0e8704e9bdfc314fff8a37'
+    });
+
+    const db = getFirestore(app);
+    onSnapshot(
+      query(collection(db, 'products'), where('active', '==', true)),
+      snap => {
+        window.aysaUpdateCatalog(snap.docs.map(d => ({ ...d.data(), id: d.id })));
+      },
+      err => {
+        console.error('Katalog gagal dimuat', err);
+        document.getElementById('cards').innerHTML = '<div class="empty"><p>Katalog belum bisa dimuat. Periksa koneksi internet Anda lalu muat ulang halaman.</p><button type="button" class="btn secondary" onclick="location.reload()">↻ Muat Ulang</button></div>';
+        document.getElementById('count').textContent = 'Gagal memuat katalog';
+      }
+    );
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.warn));
+    }
+  </script>
+</body>
+</html>
