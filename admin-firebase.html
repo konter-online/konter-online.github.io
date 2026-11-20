@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0055b8">
+  <title>Admin AYSA ALFAZA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f1f6fc;
+      --panel: #ffffff;
+      --input-bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #dbe7f4;
+      --accent: #0055b8;
+      --accent-hover: #004499;
+      --green: #16a34a;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font: 15px/1.5 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, #e6f1fc 0%, #f4f8fd 45%, #f8fafc 100%);
+      color: var(--text);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 900px; margin: 20px auto 40px; padding: 0 16px; }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 22px; margin: 0; font-weight: 800; color: var(--text); }
+    h1 span { color: var(--accent); }
+    .subtitle { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      margin: 16px 0;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+    section h2 { margin: 0 0 12px; font-size: 17px; font-weight: 800; }
+    .sub-box {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 18px 0;
+    }
+    input, select, textarea, button {
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin: 5px 0 13px;
+      background: var(--input-bg);
+      color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      background: #fff;
+      border-color: #0077ff;
+      box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.14);
+    }
+    input[readonly] {
+      background: #e2e8f0;
+      color: #475569;
+      cursor: not-allowed;
+    }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 4px 4px 4px 0;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+    button:hover:not(:disabled) { background: var(--accent-hover); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.secondary {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+    button.secondary:hover:not(:disabled) { background: #bae6fd; }
+    button.danger { background: var(--danger); color: #fff; }
+    button.danger:hover:not(:disabled) { background: var(--danger-hover); }
+    label { display: block; font-weight: 700; font-size: 12.5px; color: var(--text); }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 15px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px; }
+    .list-toolbar {
+      display: grid;
+      grid-template-columns: 1fr 180px 160px;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .list-toolbar input, .list-toolbar select { margin: 0; }
+    .item {
+      border-top: 1px solid var(--line);
+      padding: 13px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .item-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .item button { padding: 6px 11px; font-size: 12.5px; margin: 0; }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 4px;
+    }
+    .badge.active { background: #dcfce7; color: #15803d; }
+    .badge.inactive { background: #f1f5f9; color: #64748b; }
+    .badge.promo { background: #fef3c7; color: #b45309; }
+    .badge.area { background: #e0f2fe; color: #0369a1; }
+    .badge.cond { background: #fee2e2; color: #b91c1c; }
+    small { color: var(--muted); }
+    #status {
+      white-space: pre-wrap;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 12px 0;
+    }
+    .preview-box {
+      white-space: pre-wrap;
+      font-size: 12.5px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0 12px;
+      color: #334155;
+    }
+    a.back-link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 13.5px;
+    }
+    a.back-link:hover { text-decoration: underline; }
+    @media (max-width: 680px) {
+      .grid, .grid-3, .list-toolbar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="topbar">
+      <div>
+        <h1>🔐 Admin AYSA <span>ALFAZA</span></h1>
+        <p class="subtitle">Kelola katalog kuota secara langsung melalui Firebase.</p>
+      </div>
+      <a class="back-link" href="./index.html">← Lihat katalog pembeli</a>
+    </div>
+
+    <section id="loginBox">
+      <h2>Masuk Admin</h2>
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="username" placeholder="admin@aysaalfaza.com">
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button id="login" type="button">Masuk</button>
+    </section>
+
+    <section id="panel" hidden>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+        <span id="adminUserInfo" style="font-size:13px;font-weight:700;color:#15803d"></span>
+        <button id="logout" type="button" class="secondary">Keluar</button>
+      </div>
+
+      <h2>Tambah / Ubah Produk</h2>
+      <form id="form">
+        <input type="hidden" id="oldId">
+        <div class="grid">
+          <div>
+            <label for="id">Kode produk (unik)</label>
+            <input id="id" required placeholder="TSL10">
+          </div>
+          <div>
+            <label for="operator">Operator</label>
+            <select id="operator">
+              <option>Telkomsel</option>
+              <option>Indosat</option>
+              <option>XL</option>
+              <option>AXIS</option>
+              <option>Tri</option>
+              <option>Smartfren</option>
+              <option>by.U</option>
+            </select>
+          </div>
+          <div>
+            <label for="name">Nama paket</label>
+            <input id="name" required placeholder="Kuota 10 GB">
+          </div>
+          <div>
+            <label for="category">Kategori</label>
+            <input id="category" list="catSuggestions" placeholder="Paket Internet">
+            <datalist id="catSuggestions">
+              <option value="Paket Internet">
+              <option value="Paket Akrab">
+              <option value="XL Spesial Harian">
+              <option value="Masa Aktif">
+            </datalist>
+          </div>
+          <div>
+            <label for="gb">Kuota (GB)</label>
+            <input id="gb" type="number" step="0.01" min="0" required placeholder="10">
+          </div>
+          <div>
+            <label for="days">Masa aktif (hari)</label>
+            <input id="days" type="number" min="1" required placeholder="30">
+          </div>
+          <div>
+            <label for="price">Harga jual (Rp)</label>
+            <input id="price" type="number" min="0" required placeholder="25000">
+          </div>
+          <div>
+            <label for="originalPrice">Harga coret / promo (Rp, opsional)</label>
+            <input id="originalPrice" type="number" min="0" value="0" placeholder="0 jika tidak promo">
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div>
+            <label for="promoActive">Label Promo</label>
+            <select id="promoActive">
+              <option value="false">Normal (Tanpa Coret)</option>
+              <option value="true">Promo Harga Coret Aktif</option>
+            </select>
+          </div>
+          <div>
+            <label for="area">Area (Khusus Paket Akrab)</label>
+            <select id="area">
+              <option value="0">Non-Area / Semua</option>
+              <option value="1">Area 1</option>
+              <option value="2">Area 2</option>
+              <option value="3">Area 3</option>
+              <option value="4">Area 4</option>
+            </select>
+          </div>
+          <div>
+            <label for="restricted">Jenis Ketentuan</label>
+            <select id="restricted">
+              <option value="false">Paket Umum</option>
+              <option value="true">Paket Bersyarat / Zona</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="active">Status Tampil</label>
+            <select id="active">
+              <option value="true">Aktif (Tampil di Katalog)</option>
+              <option value="false">Nonaktif (Disembunyikan)</option>
+            </select>
+          </div>
+          <div>
+            <label for="description">Syarat / Keterangan Paket (opsional)</label>
+            <input id="description" maxlength="300" placeholder="Contoh: Berlaku nasional 24 jam">
+          </div>
+        </div>
+
+        <button type="submit" id="saveBtn">Simpan Produk</button>
+        <button type="button" id="reset" class="secondary">Form Baru</button>
+      </form>
+
+      <div class="sub-box" id="importSection">
+        <h2>📦 Import JSON Produk</h2>
+        <p style="font-size:13px;color:#475569;margin-top:0">
+          Pilih file JSON katalog AYSA ALFAZA. Produk baru mengikuti status <b>Aktif/Nonaktif</b> dari JSON. Produk dengan ID yang sama dapat diperbarui sekaligus tanpa menghapus data tambahan.
+        </p>
+        <label for="jsonFile">File katalog (.json)</label>
+        <input id="jsonFile" type="file" accept=".json,application/json">
+        <div id="importPreview" class="preview-box">Belum ada file dipilih.</div>
+        <button id="backupBtn" type="button" class="secondary">⬇️ Unduh Backup Firebase</button>
+        <button id="importBtn" type="button" disabled>Tambah + Update Produk</button>
+        <button id="activateBulk" type="button" class="secondary" disabled>Aktifkan Produk dari JSON</button>
+        <p style="margin-bottom:0"><small>Aktivasi massal hanya mengubah status produk dengan ID yang ada di file JSON terpilih; produk lain tidak disentuh.</small></p>
+      </div>
+
+      <h2>Daftar Produk (<span id="totalAdminCount">0</span>)</h2>
+      <div class="list-toolbar">
+        <input id="adminSearch" placeholder="🔎 Cari kode atau nama paket...">
+        <select id="adminOpFilter">
+          <option value="Semua">Semua Operator</option>
+          <option>Telkomsel</option>
+          <option>Indosat</option>
+          <option>XL</option>
+          <option>AXIS</option>
+          <option>Tri</option>
+          <option>Smartfren</option>
+          <option>by.U</option>
+        </select>
+        <select id="adminStatusFilter">
+          <option value="all">Semua Status</option>
+          <option value="active">Aktif Saja</option>
+          <option value="inactive">Nonaktif Saja</option>
+        </select>
+      </div>
+      <div id="list">Memuat...</div>
+    </section>
+
+    <p id="status" role="status"></p>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+    import { initializeFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+    const app = initializeApp({
+      apiKey: 'AIzaSyBZht1cTG__sVLhP8T-6jRctG8MeOGJ7Qw',
+      authDomain: 'aysa-alfaza.firebaseapp.com',
+      projectId: 'aysa-alfaza',
+      storageBucket: 'aysa-alfaza.firebasestorage.app',
+      messagingSenderId: '1081480695574',
+      appId: '1:1081480695574:web:0e8704e9bdfc314fff8a37'
+    });
+
+    const auth = getAuth(app);
+    const db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
+    const $ = id => document.getElementById(id);
+    let products = [];
+
+    const VALID_OPS = ['Telkomsel', 'Indosat', 'XL', 'AXIS', 'Tri', 'Smartfren', 'by.U'];
+    const message = s => { $('status').textContent = s; };
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+
+    function normOp(raw) {
+      const low = String(raw ?? '').trim().toLowerCase();
+      if (low === 'telkomsel' || low === 'tsel') return 'Telkomsel';
+      if (low === 'indosat' || low === 'im3' || low === 'isat') return 'Indosat';
+      if (low === 'xl' || low === 'xl axiata') return 'XL';
+      if (low === 'axis') return 'AXIS';
+      if (low === 'tri' || low === '3' || low === 'three') return 'Tri';
+      if (low === 'smartfren' || low === 'sf') return 'Smartfren';
+      if (low === 'by.u' || low === 'byu' || low === 'by u') return 'by.U';
+      return String(raw ?? '').trim();
+    }
+
+    $('login').onclick = async () => {
+      try {
+        await signInWithEmailAndPassword(auth, $('email').value.trim(), $('password').value);
+        $('password').value = '';
+        message('Berhasil masuk.');
+      } catch (e) {
+        message('Login gagal: ' + e.message);
+      }
+    };
+
+    $('logout').onclick = () => signOut(auth);
+
+    onAuthStateChanged(auth, async user => {
+      $('loginBox').hidden = !!user;
+      $('panel').hidden = !user;
+      if (user) {
+        $('adminUserInfo').textContent = '✓ Login: ' + (user.email || 'Admin');
+        await load();
+      } else {
+        products = [];
+        message('');
+      }
+    });
+
+    function renderList() {
+      const q = $('adminSearch').value.trim().toLowerCase();
+      const opF = $('adminOpFilter').value;
+      const stF = $('adminStatusFilter').value;
+
+      const filtered = products.filter(p =>
+        (opF === 'Semua' || normOp(p.operator) === opF) &&
+        (stF === 'all' || (stF === 'active' ? !!p.active : !p.active)) &&
+        (`${p.id} ${p.name} ${p.operator} ${p.category || ''}`.toLowerCase().includes(q))
+      );
+
+      $('totalAdminCount').textContent = `${filtered.length} / ${products.length}`;
+      $('list').innerHTML = filtered.length ? filtered.map(p => {
+        const idx = products.indexOf(p);
+        const hasPromo = p.promoActive && Number(p.originalPrice) > Number(p.price);
+        return `<div class="item">
+          <div>
+            <div>
+              <span class="badge ${p.active ? 'active' : 'inactive'}">${p.active ? 'Aktif' : 'Nonaktif'}</span>
+              ${hasPromo ? `<span class="badge promo">Promo (<s>Rp${Number(p.originalPrice).toLocaleString('id-ID')}</s>)</span>` : ''}
+              ${Number(p.area) > 0 ? `<span class="badge area">Area ${esc(p.area)}</span>` : ''}
+              ${p.restricted ? `<span class="badge cond">Bersyarat</span>` : ''}
+            </div>
+            <div style="margin-top:4px"><strong>${esc(p.operator)} • ${esc(p.name)}</strong></div>
+            <small>${esc(p.id)} | ${Number(p.gb || 0)} GB • ${Number(p.days || 0)} hari | <strong>Rp${Number(p.price || 0).toLocaleString('id-ID')}</strong></small>
+            ${p.description ? `<br><small>ℹ ${esc(p.description)}</small>` : ''}
+          </div>
+          <div class="item-actions">
+            <button type="button" class="secondary" data-toggle="${idx}">${p.active ? 'Nonaktifkan' : 'Aktifkan'}</button>
+            <button type="button" data-edit="${idx}">Edit</button>
+            <button type="button" class="danger" data-delete="${idx}">Hapus</button>
+          </div>
+        </div>`;
+      }).join('') : '<p style="color:#64748b;font-size:13.5px">Tidak ada produk yang cocok.</p>';
+    }
+
+    async function load() {
+      try {
+        const snap = await getDocs(collection(db, 'products'));
+        products = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+        products.sort((a, b) => String(a.operator).localeCompare(String(b.operator)) || Number(a.price || 0) - Number(b.price || 0));
+        renderList();
+      } catch (e) {
+        message('Gagal membaca produk: ' + e.message);
+      }
+    }
+
+    ['adminSearch', 'adminOpFilter', 'adminStatusFilter'].forEach(id => {
+      $(id).addEventListener(id === 'adminSearch' ? 'input' : 'change', renderList);
+    });
+
+    $('list').onclick = async e => {
+      const edit = e.target.dataset.edit;
+      const del = e.target.dataset.delete;
+      const tog = e.target.dataset.toggle;
+
+      if (tog !== undefined) {
+        const p = products[Number(tog)];
+        const nextActive = !p.active;
+        try {
+          await setDoc(doc(db, 'products', p.id), { active: nextActive }, { merge: true });
+          p.active = nextActive;
+          renderList();
+          message(`Status ${p.name} diubah menjadi ${nextActive ? 'Aktif' : 'Nonaktif'}.`);
+        } catch (err) {
+          message('Gagal ubah status: ' + err.message);
+        }
+        return;
+      }
+
+      if (edit !== undefined) {
+        const p = products[Number(edit)];
+        $('id').value = p.id ?? '';
+        $('id').readOnly = true;
+        $('operator').value = normOp(p.operator) || 'Telkomsel';
+        $('name').value = p.name ?? '';
+        $('category').value = p.category ?? '';
+        $('gb').value = p.gb ?? 0;
+        $('days').value = p.days ?? 1;
+        $('price').value = p.price ?? 0;
+        $('originalPrice').value = p.originalPrice ?? 0;
+        $('promoActive').value = String(!!p.promoActive);
+        $('area').value = String(Number(p.area) || 0);
+        $('restricted').value = String(!!p.restricted);
+        $('active').value = String(!!p.active);
+        $('description').value = p.description ?? '';
+        $('oldId').value = p.id;
+        $('saveBtn').textContent = 'Perbarui Produk';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (del !== undefined) {
+        const p = products[Number(del)];
+        if (!confirm('Hapus produk "' + p.name + '" (' + p.id + ')?')) return;
+        try {
+          await deleteDoc(doc(db, 'products', p.id));
+          message('Produk berhasil dihapus.');
+          await load();
+        } catch (err) {
+          message('Gagal hapus: ' + err.message);
+        }
+      }
+    };
+
+    $('reset').onclick = () => {
+      $('form').reset();
+      $('oldId').value = '';
+      $('id').readOnly = false;
+      $('originalPrice').value = '0';
+      $('promoActive').value = 'false';
+      $('area').value = '0';
+      $('restricted').value = 'false';
+      $('active').value = 'true';
+      $('saveBtn').textContent = 'Simpan Produk';
+    };
+
+    $('form').onsubmit = async e => {
+      e.preventDefault();
+      const id = $('id').value.trim();
+      if (!/^[A-Za-z0-9_-]{1,80}$/.test(id)) {
+        message('Kode produk hanya boleh huruf, angka, _ dan -');
+        return;
+      }
+      const old = $('oldId').value;
+      if (old && old !== id) {
+        message('Kode produk tidak dapat diganti saat edit. Buat produk baru jika perlu.');
+        return;
+      }
+
+      const price = Number($('price').value);
+      const originalPrice = Number($('originalPrice').value) || 0;
+      const promoActive = $('promoActive').value === 'true' && originalPrice > price;
+
+      const data = {
+        operator: $('operator').value,
+        name: $('name').value.trim(),
+        category: $('category').value.trim() || 'Paket Internet',
+        gb: Number($('gb').value),
+        days: Number($('days').value),
+        price,
+        originalPrice,
+        promoActive,
+        area: Number($('area').value) || 0,
+        restricted: $('restricted').value === 'true',
+        active: $('active').value === 'true',
+        description: $('description').value.trim()
+      };
+
+      try {
+        await setDoc(doc(db, 'products', id), data, { merge: true });
+        message('Produk berhasil disimpan.');
+        $('reset').click();
+        await load();
+      } catch (err) {
+        message('Gagal simpan: ' + err.message);
+      }
+    };
+
+    let importRows = [];
+    $('jsonFile').addEventListener('change', async () => {
+      importRows = [];
+      $('importBtn').disabled = true;
+      $('activateBulk').disabled = true;
+      $('importBtn').textContent = 'Tambah + Update Produk';
+
+      const file = $('jsonFile').files?.[0];
+      if (!file) {
+        $('importPreview').textContent = 'Belum ada file dipilih.';
+        return;
+      }
+
+      try {
+        if (file.size > 5_000_000) throw Error('File terlalu besar (maksimal 5 MB).');
+        const parsed = JSON.parse(await file.text());
+        if (!Array.isArray(parsed)) throw Error('Format JSON harus berupa array produk.');
+        if (parsed.length > 2000) throw Error('Maksimal 2.000 produk sekali import.');
+
+        const seen = new Set();
+        let invalid = 0, duplicates = 0;
+
+        for (const p of parsed) {
+          const id = String(p?.id ?? '').trim();
+          const operator = normOp(p?.operator);
+          const gb = Number(p?.gb);
+          const days = Number(p?.days);
+          const price = Number(p?.price);
+
+          const ok = /^[A-Za-z0-9_-]{1,80}$/.test(id) &&
+            VALID_OPS.includes(operator) &&
+            typeof p?.name === 'string' &&
+            p.name.trim().length > 0 &&
+            p.name.length <= 200 &&
+            Number.isFinite(gb) && gb >= 0 &&
+            Number.isInteger(days) && days > 0 &&
+            Number.isFinite(price) && price >= 0;
+
+          if (!ok) { invalid++; continue; }
+          if (seen.has(id)) { duplicates++; continue; }
+          seen.add(id);
+
+          const originalPrice = Number(p?.originalPrice) || 0;
+          const promoActive = !!p?.promoActive && originalPrice > price;
+
+          importRows.push({
+            id,
+            operator,
+            name: p.name.trim(),
+            category: String(p.category || 'Paket Internet').slice(0, 100),
+            gb,
+            days,
+            price: Math.round(price),
+            originalPrice: Math.round(originalPrice),
+            promoActive,
+            area: Number(p?.area) || 0,
+            restricted: !!p?.restricted,
+            active: p.active === true,
+            description: p?.description ? String(p.description).slice(0, 300) : ''
+          });
+        }
+
+        $('importPreview').textContent =
+          `File: ${file.name}
+Valid: ${importRows.length}
+Tidak valid: ${invalid}
+ID duplikat di file: ${duplicates}
+
+Contoh produk:
+` +
+          importRows.slice(0, 5).map(p => `${p.operator} | ${p.name} | Rp${p.price.toLocaleString('id-ID')} | ${p.active ? 'Aktif' : 'Nonaktif'}`).join('
+');
+
+        $('importBtn').disabled = !importRows.length;
+        $('activateBulk').disabled = !importRows.length;
+        if (importRows.length) {
+          $('importBtn').textContent = `Tambah + Update Produk (${importRows.length})`;
+        }
+      } catch (e) {
+        $('importPreview').textContent = 'Gagal membaca JSON: ' + e.message;
+      }
+    });
+
+    $('backupBtn').onclick = async () => {
+      if (!auth.currentUser) { message('Login admin terlebih dahulu.'); return; }
+      try {
+        const snap = await getDocs(collection(db, 'products'));
+        const backup = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'AYSA-BACKUP-FIREBASE-' + new Date().toISOString().slice(0, 10) + '.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        message(`Backup ${backup.length} produk disiapkan untuk diunduh.`);
+      } catch (e) {
+        message('Gagal backup: ' + e.message);
+      }
+    };
+
+    $('importBtn').onclick = async () => {
+      if (!auth.currentUser || !importRows.length) return;
+      if (!confirm(`Tambah atau perbarui ${importRows.length} produk berdasarkan ID? Harga, nama, masa aktif, kuota dan status akan mengikuti JSON. Pastikan sudah mengunduh backup Firebase.`)) return;
+      if (prompt('Ketik UPDATE untuk melanjutkan:') !== 'UPDATE') { message('Dibatalkan.'); return; }
+
+      $('importBtn').disabled = true;
+      let added = 0, updated = 0, failed = 0;
+      const errors = [];
+
+      try {
+        const snap = await getDocs(collection(db, 'products'));
+        const known = new Set(snap.docs.map(d => d.id));
+        for (const p of importRows) {
+          try {
+            const { id, ...data } = p;
+            await setDoc(doc(db, 'products', id), data, { merge: true });
+            if (known.has(id)) updated++; else { added++; known.add(id); }
+          } catch (e) {
+            failed++;
+            errors.push(p.id + ': ' + e.message);
+          }
+          if ((added + updated + failed) % 10 === 0) {
+            message(`Proses: ${added} baru, ${updated} diperbarui, ${failed} gagal`);
+          }
+        }
+        message(`Selesai: ${added} baru, ${updated} diperbarui, ${failed} gagal.` + (errors.length ? '
+Contoh error: ' + errors.slice(0, 5).join('
+') : ''));
+        await load();
+      } catch (e) {
+        message('Proses terhenti: ' + e.message + ` (baru ${added}, diperbarui ${updated}, gagal ${failed})`);
+      } finally {
+        $('importBtn').disabled = false;
+      }
+    };
+
+    $('activateBulk').onclick = async () => {
+      if (!auth.currentUser) { message('Silakan login admin terlebih dahulu.'); return; }
+      if (!importRows.length) { message('Pilih file JSON terlebih dahulu untuk menentukan produk yang akan diaktifkan.'); return; }
+      const marked = importRows.filter(p => p.active);
+      if (!marked.length) { message('Tidak ada produk berstatus Aktif dalam JSON.'); return; }
+      if (!confirm(`Aktifkan ${marked.length} produk dari file JSON? Produk yang sudah ada akan diubah statusnya menjadi Aktif.`)) return;
+      const typed = prompt('Ketik AKTIFKAN untuk konfirmasi aktivasi massal:');
+      if (typed !== 'AKTIFKAN') { message('Aktivasi dibatalkan.'); return; }
+
+      $('activateBulk').disabled = true;
+      let updated = 0, missing = 0, failed = 0;
+      try {
+        const snap = await getDocs(collection(db, 'products'));
+        const existing = new Set(snap.docs.map(d => d.id));
+        for (const p of marked) {
+          if (!existing.has(p.id)) { missing++; continue; }
+          try {
+            await setDoc(doc(db, 'products', p.id), { active: true }, { merge: true });
+            updated++;
+          } catch (e) {
+            failed++;
+          }
+          if ((updated + failed) % 10 === 0) {
+            message(`Aktivasi berjalan: ${updated} aktif, ${missing} belum diimport, ${failed} gagal`);
+          }
+        }
+        message(`Aktivasi selesai: ${updated} aktif, ${missing} belum diimport, ${failed} gagal.`);
+        await load();
+      } catch (e) {
+        message('Aktivasi gagal: ' + e.message);
+      } finally {
+        $('activateBulk').disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
