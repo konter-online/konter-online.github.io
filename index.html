@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0055b8">
+<meta name="description" content="AYSA ALFAZA — katalog kuota semua operator, cek nomor otomatis & pesan mudah lewat WhatsApp.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<title>AYSA ALFAZA — Katalog Kuota All Operator</title>
+<style>
+:root{--bg:#f1f6fc;--panel:#fff;--panel2:#f1f5f9;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--accent:#0055b8;--green:#16a34a;--green2:#15803d;--danger:#b91c1c;--grad:linear-gradient(135deg,#0052cc,#0088ff);--shadow:0 2px 10px rgba(15,23,42,.05)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#e6f1fc,#f4f8fd 42%,#f8fafc);background-attachment:fixed;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;transition:filter .15s,background .15s,transform .1s;touch-action:manipulation}
+button:active{transform:scale(.98)}
+:focus-visible{outline:3px solid #38bdf8;outline-offset:2px}
+[hidden]{display:none!important}
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top{min-height:68px;padding:10px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:800;min-width:0}
+.brand .sm{font-size:11.5px;color:var(--muted);font-weight:500}
+.brand span{color:var(--accent)}
+.logo{width:44px;height:44px;flex:0 0 44px;border-radius:13px;overflow:hidden;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:800}
+.logo img{width:100%;height:100%;object-fit:cover}
+.btn{background:var(--grad);color:#fff;border:0;border-radius:12px;padding:10px 15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;box-shadow:0 4px 12px rgba(0,119,255,.2);min-height:44px}
+.btn:hover{filter:brightness(1.06)}
+.btn.sec{background:var(--panel2);border:1px solid #cbd5e1;color:var(--text);box-shadow:none}
+.btn.sec:hover{background:#e2e8f0}
+.btn.wa{background:var(--green);box-shadow:0 4px 14px rgba(22,163,74,.25)}
+.btn.wa:hover{background:var(--green2)}
+.btn.sm{min-height:36px;padding:8px 12px;font-size:12.5px;border-radius:10px}
+.btn.order{background:var(--green);min-height:36px;padding:7px 12px;font-size:12.5px;border-radius:10px;box-shadow:0 3px 10px rgba(22,163,74,.22)}
+.btn.order:hover{background:var(--green2)}
+.top>a.btn{background:#dcfce7;color:var(--green2);border:1px solid #bbf7d0;box-shadow:none;white-space:nowrap;font-size:13px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.hero{margin:16px 0 14px;padding:22px 24px;border-radius:22px;background:linear-gradient(135deg,#0047ab,#0077ff 58%,#00a896);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 8px 24px rgba(0,85,184,.18)}
+.pill{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.32);border-radius:99px;padding:4px 11px;font-size:11px;font-weight:700;margin-bottom:8px}
+.hero h1{font-size:clamp(22px,3.8vw,33px);margin:0 0 6px;line-height:1.18;font-weight:800}
+.hero h1 span{color:#fde047}
+.hero p{margin:0;font-size:14px;opacity:.95}
+.hero-icon{font-size:58px;opacity:.85}
+.checker{margin:14px 0 6px;padding:12px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lbl{font-size:13px;font-weight:700;white-space:nowrap}
+.iw{position:relative;flex:1 1 220px;display:flex;align-items:center}
+.iw input{padding-right:38px}
+.badge-op{font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:10px;border:1px solid currentColor;white-space:nowrap;background:#e0f2fe;color:#0369a1}
+input,select,textarea{width:100%;padding:11px 12px;background:#f8fafc;color:var(--text);border:1.5px solid #cbd5e1;border-radius:11px;outline:0;font-weight:500}
+input::placeholder,textarea::placeholder{color:#94a3b8}
+input:focus,select:focus,textarea:focus{background:#fff;border-color:#0077ff;box-shadow:0 0 0 3px rgba(0,119,255,.14)}
+.x{position:absolute;right:6px;width:32px;height:32px;border-radius:50%;border:0;background:#e2e8f0;color:#475569;padding:0;font-size:12px;font-weight:700;display:grid;place-items:center;min-height:32px}
+.sec-t{font-size:16px;font-weight:800;margin:18px 0 10px}
+.ops{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 6px;scrollbar-width:none}
+.ops::-webkit-scrollbar{display:none}
+.op{flex:0 0 auto;min-width:98px;scroll-snap-align:start;border:1.5px solid var(--line);background:var(--panel);color:var(--text);padding:9px 6px;border-radius:14px;font-weight:800;font-size:14px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.op::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--c,#0066cc);opacity:.75}
+.op small{font-size:11px;color:var(--muted);font-weight:500}
+.op.on{background:var(--g,var(--grad));color:#fff;border-color:transparent}
+.op.on::before{opacity:0}
+.op.on small{color:rgba(255,255,255,.92)}
+.filters{margin-top:14px;padding:12px}
+.fp{display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:center}
+.ft{display:none;align-items:center;gap:6px;padding:11px 13px;background:var(--panel2);border:1px solid #cbd5e1;border-radius:11px;color:var(--text);font-weight:700;font-size:13.5px;white-space:nowrap;min-height:44px}
+.ft.on{border-color:#60a5fa;background:#e0f2fe;color:#0369a1}
+.fb{background:var(--accent);color:#fff;font-size:11px;padding:1px 6px;border-radius:99px;font-weight:800}
+.fs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:9px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:13px 0 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:8px 14px;background:var(--panel);border:1px solid var(--line);border-radius:99px;color:var(--muted);font-size:13px;font-weight:700;min-height:38px}
+.chip.on{background:#e0efff;border-color:#60a5fa;color:var(--accent)}
+.sum{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12.5px;font-weight:600;margin:10px 2px 12px}
+.cards{display:grid;grid-template-columns:1fr;gap:11px}
+.card{display:grid;grid-template-columns:84px minmax(0,1fr) auto;align-items:center;gap:12px;padding:13px 14px;border:1.5px solid var(--line);border-radius:18px;background:var(--panel);box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:var(--c,#60a5fa);box-shadow:0 6px 20px rgba(15,23,42,.08)}
+.qb{min-width:84px;padding:12px 6px;text-align:center;border-radius:14px;background:var(--g,var(--grad));color:#fff;font-size:19px;font-weight:800;line-height:1.15;white-space:nowrap}
+.qb small{display:block;font-size:10.5px;font-weight:700;opacity:.92;margin-top:2px}
+.pm{min-width:0}
+.tags{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:4px}
+.opp{font-size:11.5px;font-weight:800;padding:2px 8px;border-radius:6px;background:var(--ob,#e0f2fe);color:var(--ot,#0369a1)}
+.vp{font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;background:#dcfce7;color:var(--green2);border:1px solid #86efac}
+.pn{font-size:14.5px;font-weight:800;line-height:1.32;margin:0;overflow-wrap:anywhere}
+.meta{font-size:12px;color:var(--muted);margin-top:4px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.terms{background:#fef3c7;border:1px solid #fde68a;color:#92400e;font-size:11.5px;font-weight:700;padding:2px 7px;border-radius:6px;min-height:28px}
+.terms-d{grid-column:1/-1;background:#fffbeb;border:1px dashed #fbbf24;border-radius:11px;padding:9px 11px;font-size:12.5px;color:#78350f;line-height:1.45}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.promo{font-size:11px;font-weight:700;color:#b45309;display:flex;gap:4px;align-items:center}
+.pd{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:1px 5px;border-radius:5px;font-size:10.5px}
+.promo s{color:#94a3b8;font-weight:500}
+.price{font-size:18px;font-weight:800;color:var(--accent);white-space:nowrap}
+.unit{font-size:11px;color:var(--muted);font-weight:600;margin-top:-2px}
+.empty{grid-column:1/-1;text-align:center;padding:36px 20px;color:var(--muted);background:var(--panel);border:1.5px dashed #cbd5e1;border-radius:18px}
+.empty p{margin:0 0 14px}
+.sk{background:linear-gradient(90deg,#e2e8f0 25%,#f1f5f9 50%,#e2e8f0 75%);background-size:800px 100%;animation:sh 1.3s infinite linear;border-radius:8px}
+@keyframes sh{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.partner{margin:28px 0 20px;padding:18px}
+.partner h2{font-size:17px;margin:0 0 4px}
+.partner>p{font-size:13px;color:var(--muted);margin:0 0 14px}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.pt{background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;border-radius:15px;padding:15px;display:flex;flex-direction:column;gap:6px}
+.pt.d{background:linear-gradient(135deg,#f0fdf4,#f8fafc);border-color:#bbf7d0}
+.eb{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.04em}
+.pt.d .eb{color:var(--green2)}
+.pt h3{font-size:16px;margin:0}
+.pt p{font-size:13px;color:var(--muted);margin:0 0 4px;flex:1}
+.pbtns{display:flex;gap:8px;flex-wrap:wrap}
+.areas{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.areas button{background:var(--panel2);border:1px solid #cbd5e1;color:var(--text);border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;min-height:38px}
+.areas button[aria-pressed=true]{background:#e0f2fe;border-color:#60a5fa;color:var(--accent)}
+.clearfeat{margin-top:10px}
+.note{margin:18px 0 28px;padding:14px 16px;background:#eff6ff;border-color:#bfdbfe;color:#1e3a8a;font-size:13px;line-height:1.55}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:12px 0 42px}
+.ns{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:12px;margin:16px 0}
+.more{text-align:center;margin:20px 0}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.58);z-index:999;display:grid;place-items:center;padding:16px}
+.dlg{position:relative;width:min(100%,440px);max-height:92vh;overflow-y:auto;background:#fff;border-radius:22px;padding:22px;box-shadow:0 20px 60px rgba(15,23,42,.25)}
+.dlg h2{margin:0 0 12px;font-size:18px}
+.xc{position:absolute;right:14px;top:14px;width:36px;height:36px;border-radius:50%;background:#e2e8f0;color:#334155;border:0;padding:0;font-size:16px;font-weight:700;display:grid;place-items:center;min-height:36px}
+.sumc{background:#f8fafc;border:1px solid var(--line);border-radius:15px;padding:13px 14px;margin-bottom:14px}
+.sumc .nm{font-weight:800;font-size:15px;margin:6px 0 4px}
+.sumc .mt{font-size:12.5px;color:var(--muted)}
+.sumc .pr{font-size:18px;font-weight:800;color:var(--accent);margin-top:9px;padding-top:9px;border-top:1px dashed #cbd5e1;display:flex;justify-content:space-between;align-items:center}
+.sumc .pr span{font-size:12px;color:var(--muted);font-weight:600}
+.dlg label{display:block;font-weight:700;font-size:13px;margin:12px 0 6px}
+.chipph{margin-top:7px;background:#eff6ff;border:1px solid #bfdbfe;color:var(--accent);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:700;min-height:36px}
+.perr{min-height:18px;font-size:13px;font-weight:700;margin:6px 0 2px;color:var(--danger)}
+.perr.ok{color:var(--green2)}
+.perr.warn{color:#b45309}
+.acts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.acts .btn{width:100%;padding:13px;font-size:14.5px}
+.help{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+#up{position:fixed;right:18px;bottom:20px;z-index:15;width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;border:0;padding:0;font-size:18px;font-weight:800;box-shadow:0 6px 18px rgba(0,85,184,.3);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s,transform .2s;min-height:46px}
+#up.show{opacity:1;pointer-events:auto;transform:none}
+.sync{font-size:12.5px;color:var(--muted)}
+@media(min-width:850px){
+  .ops{display:grid;grid-template-columns:repeat(8,1fr);overflow:visible}
+  .op{min-width:0}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-icon{display:block}
+}
+@media(max-width:849px){.hero-icon{display:none}}
+@media(max-width:680px){
+  .fp{grid-template-columns:1fr auto}
+  #sort{grid-column:1/-1}
+  .ft{display:inline-flex}
+  .fs{grid-template-columns:1fr 1fr}
+  #type{grid-column:1/-1}
+  .fs.collapsed{display:none}
+  .pgrid{grid-template-columns:1fr}
+  .modal{align-items:end;padding:0}
+  .dlg{width:100%;max-height:88vh;border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+}
+@media(max-width:530px){
+  .brand{font-size:15.5px}
+  .brand .sm{font-size:11px}
+  .logo{width:40px;height:40px;flex-basis:40px}
+  .top>a.btn{width:40px;height:40px;padding:0;min-width:40px}
+  .contact-l{display:none}
+  .hero{padding:16px;border-radius:18px}
+  .hero .pill{display:none}
+  .hero h1{font-size:20px}
+  .card{grid-template-columns:74px minmax(0,1fr) auto;gap:9px;padding:11px 10px}
+  .qb{min-width:74px;font-size:17px;padding:11px 4px}
+  .pn{font-size:13.5px}
+  .price{font-size:16px}
+  .btn.order{min-width:70px;padding:7px 8px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div class="brand">
+      <div class="logo"><img src="./icons/icon-192.png" alt="Logo AYSA ALFAZA" onerror="this.parentNode.textContent='AA'"></div>
+      <div>AYSA <span>ALFAZA</span><div class="sm">Katalog Kuota All Operator</div></div>
+    </div>
+    <a class="btn" href="https://wa.me/6285715409193" target="_blank" rel="noopener noreferrer" aria-label="Hubungi admin via WhatsApp"><span class="contact-l">💬 Hubungi Admin</span><span aria-hidden="true">💬</span></a>
+  </div>
+</header>
+
+<main class="wrap">
+  <noscript><p class="ns">Katalog membutuhkan JavaScript. Aktifkan JavaScript atau <a href="https://wa.me/6285715409193">hubungi admin via WhatsApp</a>.</p></noscript>
+
+  <section class="hero">
+    <div>
+      <span class="pill">✦ AYSA ALFAZA • DATA STORE</span>
+      <h1>Kuota Internet Favoritmu, <span>Semudah Itu.</span></h1>
+      <p>Cek nomor otomatis atau pilih operator, lalu pesan langsung via WhatsApp.</p>
+    </div>
+    <div class="hero-icon" aria-hidden="true">⚡</div>
+  </section>
+
+  <div class="box checker">
+    <label class="lbl" for="qp">📱 Cek Nomor:</label>
+    <div class="iw">
+      <input id="qp" type="tel" inputmode="numeric" autocomplete="off" placeholder="Ketik 08xx untuk deteksi operator otomatis…" maxlength="16">
+      <button type="button" id="qpClear" class="x" hidden aria-label="Hapus nomor">✕</button>
+    </div>
+    <span id="det" class="badge-op" hidden role="status"></span>
+  </div>
+
+  <h2 class="sec-t">Pilih Operator</h2>
+  <div id="ops" class="ops" role="group" aria-label="Pilih operator"></div>
+
+  <div class="box filters">
+    <div class="fp">
+      <div class="iw">
+        <input id="search" type="search" placeholder="🔎 Cari paket, kuota (mis. 10 GB), atau kode…" aria-label="Cari paket">
+        <button type="button" id="sClear" class="x" hidden aria-label="Hapus pencarian">✕</button>
+      </div>
+      <button type="button" id="ftog" class="ft" aria-expanded="false" aria-controls="fs">⚙️ Filter <span id="fbadge" class="fb" hidden>0</span></button>
+      <select id="sort" aria-label="Urutkan">
+        <option value="recommended">Urutkan: Rekomendasi</option>
+        <option value="cheap">Harga termurah</option>
+        <option value="large">Kuota terbesar</option>
+        <option value="long">Masa aktif terlama</option>
+      </select>
+    </div>
+    <div id="fs" class="fs collapsed">
+      <select id="price" aria-label="Rentang harga">
+        <option value="all">Semua harga</option>
+        <option value="25000">≤ Rp25.000</option>
+        <option value="50000">≤ Rp50.000</option>
+        <option value="100000">≤ Rp100.000</option>
+        <option value="100001">Di atas Rp100.000</option>
+      </select>
+      <select id="quota" aria-label="Minimal kuota">
+        <option value="0">Semua kuota</option>
+        <option value="1">Minimal 1 GB</option>
+        <option value="5">Minimal 5 GB</option>
+        <option value="10">Minimal 10 GB</option>
+        <option value="20">Minimal 20 GB</option>
+        <option value="50">Minimal 50 GB</option>
+      </select>
+      <select id="type" aria-label="Jenis produk">
+        <option value="standard">Paket umum</option>
+        <option value="all">Semua paket (termasuk bersyarat)</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="chips" class="chips" role="group" aria-label="Masa aktif"></div>
+  <div class="sum">
+    <span id="count" aria-live="polite">Memuat katalog…</span>
+    <span id="info" class="sync"></span>
+  </div>
+  <div id="cards" class="cards"></div>
+  <div class="more"><button type="button" id="more" class="btn sec" hidden>Tampilkan lebih banyak ↓</button></div>
+
+  <section class="box partner" id="partner" aria-labelledby="ph">
+    <h2 id="ph">🤝 Rekomendasi Mitra</h2>
+    <p>Untuk Paket Akrab dan XL Spesial Harian, lihat paketnya di katalog ini atau kunjungi mitra kami, ALMIDA STORE.</p>
+    <div class="pgrid">
+      <div class="pt">
+        <span class="eb">PAKET BULANAN</span>
+        <h3>👥 Paket Akrab</h3>
+        <p>Kuota keluarga/bersama dengan harga hemat.</p>
+        <div class="pbtns">
+          <button type="button" class="btn sm" data-feat="akrab">Lihat paket</button>
+          <a class="btn sm sec" href="https://cek-area.github.io/almida-store/" target="_blank" rel="noopener noreferrer">Lihat di ALMIDA ↗</a>
+        </div>
+      </div>
+      <div class="pt d">
+        <span class="eb">PAKET HARIAN</span>
+        <h3>⚡ XL Spesial Harian</h3>
+        <p>Paket masa aktif singkat.</p>
+        <div class="pbtns">
+          <button type="button" class="btn sm wa" data-feat="daily">Lihat paket</button>
+          <a class="btn sm sec" href="https://cek-area.github.io/almida-store/" target="_blank" rel="noopener noreferrer">Lihat di ALMIDA ↗</a>
+        </div>
+      </div>
+    </div>
+    <div id="areas" class="areas" role="group" aria-label="Filter area Paket Akrab" hidden>
+      <button type="button" data-area="0" aria-pressed="true">Semua Area</button>
+      <button type="button" data-area="1" aria-pressed="false">Area 1</button>
+      <button type="button" data-area="2" aria-pressed="false">Area 2</button>
+      <button type="button" data-area="3" aria-pressed="false">Area 3</button>
+      <button type="button" data-area="4" aria-pressed="false">Area 4</button>
+    </div>
+    <button type="button" id="clearFeat" class="btn sec sm clearfeat" hidden></button>
+  </section>
+
+  <div class="box note">
+    <strong>ℹ Informasi Penting • Mitra ALMIDA STORE</strong><br>
+    Harga dan ketersediaan paket dapat berubah sewaktu-waktu. Pastikan nomor tujuan dan jenis paket sudah sesuai sebelum melakukan pemesanan. Hubungi admin AYSA ALFAZA untuk konfirmasi lebih lanjut.
+  </div>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button type="button" id="mc" class="xc" aria-label="Tutup">✕</button>
+    <h2 id="mt">Konfirmasi Pesanan</h2>
+    <div id="sum" class="sumc"></div>
+    <label for="target">Nomor tujuan paket</label>
+    <input id="target" type="tel" inputmode="numeric" autocomplete="tel" placeholder="08xx-xxxx-xxxx" maxlength="16">
+    <button type="button" id="saved" class="chipph" hidden></button>
+    <p id="perr" class="perr" role="alert"></p>
+    <label for="note">Catatan tambahan (opsional)</label>
+    <textarea id="note" rows="2" maxlength="180" placeholder="Contoh: Mohon cek area / masa aktif kartu"></textarea>
+    <div class="acts">
+      <button type="button" id="send" class="btn wa">Lanjut ke WhatsApp ↗</button>
+      <button type="button" id="copy" class="btn sec">📋 Salin Format Pesanan</button>
+    </div>
+    <p class="help">Pesanan belum diproses sampai admin mengonfirmasi ketersediaan dan pembayaran.</p>
+  </div>
+</div>
+
+<button type="button" id="up" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+<footer>© AYSA ALFAZA • Pemesanan via WhatsApp • Mitra: ALMIDA STORE</footer>
+
+<script>
+const CFG={p:'aysa-alfaza',k:'AIzaSyBZht1cTG__sVLhP8T-6jRctG8MeOGJ7Qw',wa:'6285715409193',ck:'aysa_catalog_v2',pk:'aysa_last_phone'};
+const OP=['Telkomsel','Indosat','XL','AXIS','Tri','Smartfren','by.U'];
+const TH={
+  Semua:{c:'#0066cc',g:'var(--grad)',b:'#e0f2fe',t:'#0369a1'},
+  Telkomsel:{c:'#e11d48',g:'linear-gradient(135deg,#e11d48,#be123c)',b:'#ffe4e6',t:'#be123c'},
+  Indosat:{c:'#d97706',g:'linear-gradient(135deg,#f59e0b,#d97706)',b:'#fef3c7',t:'#b45309'},
+  XL:{c:'#0284c7',g:'linear-gradient(135deg,#0055b8,#0088ff)',b:'#e0f2fe',t:'#0369a1'},
+  AXIS:{c:'#7c3aed',g:'linear-gradient(135deg,#7c3aed,#6d28d9)',b:'#ede9fe',t:'#6d28d9'},
+  Tri:{c:'#db2777',g:'linear-gradient(135deg,#db2777,#be185d)',b:'#fce7f3',t:'#be185d'},
+  Smartfren:{c:'#e11d48',g:'linear-gradient(135deg,#f43f5e,#be123c)',b:'#ffe4e6',t:'#be123c'},
+  'by.U':{c:'#0891b2',g:'linear-gradient(135deg,#06b6d4,#0e7490)',b:'#cffafe',t:'#0e7490'}
+};
+const PREFIX={
+  Telkomsel:['0811','0812','0813','0821','0822','0823','0852','0853'],
+  'by.U':['0851'],
+  Indosat:['0814','0815','0816','0855','0856','0857','0858'],
+  XL:['0817','0818','0819','0859','0877','0878'],
+  AXIS:['0831','0832','0833','0838'],
+  Tri:['0895','0896','0897','0898','0899'],
+  Smartfren:['0881','0882','0883','0884','0885','0886','0887','0888','0889']
+};
+const LEGACY=/topping|aplikasi|unlimited|malam|game|streaming|youtube|viu|netflix|spotify|tiktok|sosmed|chat|lokal|regional|zona|kuota belajar|edukasi|byu cetak|voucher|cetak|inject|promo khusus/i;
+const DEF_TERMS='Paket bersyarat: dapat berlaku khusus area/zona tertentu, aplikasi tertentu, atau nomor terpilih. Admin akan mengecek kecocokan nomor tujuan sebelum pembayaran.';
+
+const $=id=>document.getElementById(id);
+const money=n=>'Rp'+Math.round(n).toLocaleString('id-ID');
+const safe=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>{
+  if(typeof v==='number') return Number.isFinite(v)?v:NaN;
+  if(typeof v!=='string') return NaN;
+  const c=v.replace(/[^\d.]/g,'');
+  if(!c) return NaN;
+  return /^\d{1,3}(\.\d{3})+$/.test(c)?Number(c.replace(/\./g,'')):Number(c);
+};
+const normOp=raw=>{
+  const s=String(raw||'').trim(), l=s.toLowerCase();
+  if(['telkomsel','tsel'].includes(l)) return 'Telkomsel';
+  if(['indosat','im3','isat'].includes(l)) return 'Indosat';
+  if(['xl','xl axiata'].includes(l)) return 'XL';
+  if(l==='axis') return 'AXIS';
+  if(['tri','3','three'].includes(l)) return 'Tri';
+  if(['smartfren','sf'].includes(l)) return 'Smartfren';
+  if(['by.u','byu','by u'].includes(l)) return 'by.U';
+  return s;
+};
+const normPhone=raw=>{
+  let d=String(raw||'').replace(/\D/g,'');
+  if(d.startsWith('62')&&d.length>=4) d='0'+d.slice(2);
+  return d.slice(0,13);
+};
+const fmtPhone=raw=>{const d=normPhone(raw);return [d.slice(0,4),d.slice(4,8),d.slice(8,13)].filter(Boolean).join('-');};
+const detectOp=raw=>{
+  const c=normPhone(raw);
+  if(c.length<4) return null;
+  const pre=c.slice(0,4);
+  for(const [op,list] of Object.entries(PREFIX)) if(list.includes(pre)) return op;
+  return null;
+};
+const isStd=p=>{
+  if(p.type) return p.type==='standard';
+  return p.category==='Paket Akrab'||p.category==='XL Spesial Harian'||(!p.restricted&&!LEGACY.test(p.name+' '+p.category));
+};
+
+let P=[], IDX=new Map(), loading=true, errMsg='', syncing=false, updatedAt=0, sel=null, lastTrig=null;
+const st={op:'Semua',days:0,feat:'all',area:0,shown:24,auto:false,last:null};
+
+/* ---------- Filter & render ---------- */
+function list(){
+  const q=$('search').value.trim().toLowerCase();
+  const pv=$('price').value, qv=Number($('quota').value), tv=$('type').value;
+  return P.filter(p=>
+    !p.hidden &&
+    (st.op==='Semua'||p.operator===st.op) &&
+    (!st.days||p.days===st.days) &&
+    (tv==='all'||isStd(p)) &&
+    (st.feat==='all'||(st.feat==='akrab'
+      ? p.category==='Paket Akrab'&&(!st.area||p.area===st.area)
+      : p.category==='XL Spesial Harian')) &&
+    (pv==='all'||(pv==='100001'?p.price>100000:p.price<=Number(pv))) &&
+    p.gb>=qv &&
+    `${p.name} ${p.id} ${p.gb} ${p.operator} ${p.category} ${p.days} hari`.toLowerCase().includes(q)
+  );
+}
+function sortList(L){
+  const s=$('sort').value;
+  const f = s==='cheap' ? (a,b)=>a.price-b.price
+    : s==='large' ? (a,b)=>b.gb-a.gb||a.price-b.price
+    : s==='long' ? (a,b)=>b.days-a.days||a.price-b.price
+    : (a,b)=>(+isStd(b)-+isStd(a))||a.days-b.days||a.price/Math.max(a.gb,1)-b.price/Math.max(b.gb,1);
+  return L.sort(f);
+}
+/* Paling hemat dibandingkan hanya di antara paket dengan masa aktif yang sama */
+function bestIds(L){
+  const g={};
+  for(const p of L){
+    if(p.gb<3||!isStd(p)) continue;
+    const r=p.price/p.gb;
+    if(!g[p.days]) g[p.days]={n:0,r:Infinity,id:null};
+    g[p.days].n++;
+    if(r<g[p.days].r){g[p.days].r=r;g[p.days].id=p.id;}
+  }
+  const s=new Set();
+  for(const k in g) if(g[k].n>=2) s.add(g[k].id);
+  return s;
+}
+function card(p,best){
+  const t=TH[p.operator]||TH.Semua;
+  const hasP=p.promoActive&&p.originalPrice>p.price;
+  const disc=hasP?Math.round((1-p.price/p.originalPrice)*100):0;
+  const cond=!isStd(p);
+  const unit=p.gb>0?money(p.price/p.gb)+'/GB':'';
+  return `<article class="card" data-id="${safe(p.id)}" style="--c:${t.c};--g:${t.g};--ob:${t.b};--ot:${t.t}">
+    <div class="qb">${p.gb>0?p.gb.toLocaleString('id-ID')+' GB':'Paket'}<small>${p.days} HARI</small></div>
+    <div class="pm">
+      <div class="tags"><span class="opp">${safe(p.operator)}</span>${best?`<span class="vp" title="Harga per GB terendah untuk masa aktif ${p.days} hari">★ Paling hemat</span>`:''}</div>
+      <h3 class="pn">${safe(p.name)}</h3>
+      <div class="meta"><span>${p.days} hari</span>${p.category==='Paket Akrab'?`<span>• Area ${safe(p.area||'?')}</span>`:''}${cond?'<button type="button" class="terms" aria-expanded="false">ℹ Cek syarat</button>':''}</div>
+    </div>
+    <div class="side">
+      ${hasP?`<div class="promo">${disc>=5?`<span class="pd">-${disc}%</span>`:''}<s>${money(p.originalPrice)}</s></div>`:''}
+      <div class="price">${money(p.price)}</div>
+      ${unit?`<div class="unit">${unit}</div>`:''}
+      <button type="button" class="btn order" aria-label="Pesan ${safe(p.name)}">Pesan</button>
+    </div>
+    ${cond?`<div class="terms-d" hidden>${safe(p.description||DEF_TERMS)}</div>`:''}
+  </article>`;
+}
+function skeleton(){
+  $('cards').innerHTML=Array.from({length:6},()=>`<div class="card" aria-hidden="true">
+    <div class="sk" style="width:84px;height:64px;border-radius:14px"></div>
+    <div><div class="sk" style="width:35%;height:11px;margin-bottom:8px"></div><div class="sk" style="height:14px;margin-bottom:8px"></div><div class="sk" style="width:50%;height:11px"></div></div>
+    <div><div class="sk" style="width:72px;height:16px;margin-bottom:8px"></div><div class="sk" style="width:86px;height:34px;border-radius:10px"></div></div>
+  </div>`).join('');
+}
+function updBadge(){
+  let n=0;
+  if($('price').value!=='all') n++;
+  if($('quota').value!=='0') n++;
+  if($('type').value!=='standard') n++;
+  $('fbadge').textContent=n;
+  $('fbadge').hidden=!n;
+  $('ftog').classList.toggle('on',n>0);
+}
+function renderOps(){
+  $('ops').innerHTML=['Semua',...OP].map(op=>{
+    const t=TH[op], on=op===st.op;
+    return `<button type="button" class="op${on?' on':''}" aria-pressed="${on}" data-op="${op}" style="--c:${t.c};--g:${t.g}">${op==='Semua'?'✦ Semua':safe(op)}<small>${op==='Semua'?'Semua operator':'Paket data'}</small></button>`;
+  }).join('');
+}
+function renderChips(){
+  $('chips').innerHTML=[0,1,2,3,5,7,14,28,30].map(d=>
+    `<button type="button" class="chip${d===st.days?' on':''}" aria-pressed="${d===st.days}" data-d="${d}">${d?d+' hari':'Semua masa aktif'}</button>`).join('');
+}
+function render(){
+  renderOps(); renderChips(); updBadge();
+  $('areas').hidden=st.feat!=='akrab';
+  $('areas').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.area===st.area)));
+  $('clearFeat').hidden=st.feat==='all';
+  $('clearFeat').textContent='✕ Hapus filter: '+(st.feat==='akrab'?'Paket Akrab':'XL Spesial Harian');
+
+  if(loading){ $('count').textContent='Memuat katalog…'; $('info').textContent=''; $('more').hidden=true; skeleton(); return; }
+  if(errMsg&&!P.length){
+    $('count').textContent='Gagal memuat katalog'; $('info').textContent=''; $('more').hidden=true;
+    $('cards').innerHTML=`<div class="empty"><p>Katalog belum bisa dimuat (${safe(errMsg)}). Periksa koneksi internet Anda lalu coba lagi.</p><button type="button" class="btn sec" id="retry">↻ Coba Muat Lagi</button></div>`;
+    return;
+  }
+
+  const L=sortList(list()), best=bestIds(L);
+  $('count').textContent=`${L.length.toLocaleString('id-ID')} paket ditemukan`;
+  $('info').textContent=syncing?'Menyinkronkan data…':(updatedAt?'Diperbarui '+new Date(updatedAt).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}):'');
+  $('cards').innerHTML=L.length
+    ? L.slice(0,st.shown).map(p=>card(p,best.has(p.id))).join('')
+    : `<div class="empty"><p>Belum ada paket yang cocok dengan filter saat ini.</p><button type="button" class="btn sec" id="reset">↻ Reset Semua Filter</button></div>`;
+  const rest=L.length-st.shown;
+  $('more').hidden=rest<=0;
+  $('more').textContent=`Tampilkan ${Math.min(24,rest)} paket lagi ↓`;
+}
+function resetAll(){
+  Object.assign(st,{op:'Semua',days:0,feat:'all',area:0,shown:24,auto:false,last:null});
+  $('search').value=''; $('sClear').hidden=true;
+  $('qp').value=''; $('qpClear').hidden=true; $('det').hidden=true;
+  $('sort').value='recommended'; $('price').value='all'; $('quota').value='0'; $('type').value='standard';
+  render();
+}
+
+/* ---------- Katalog: data & cache ---------- */
+const dv=v=>{
+  if(!v||typeof v!=='object') return null;
+  if('stringValue' in v) return v.stringValue;
+  if('integerValue' in v) return Number(v.integerValue);
+  if('doubleValue' in v) return Number(v.doubleValue);
+  if('booleanValue' in v) return !!v.booleanValue;
+  if('nullValue' in v) return null;
+  if('timestampValue' in v) return v.timestampValue;
+  if('arrayValue' in v) return (v.arrayValue.values||[]).map(dv);
+  if('mapValue' in v) return df(v.mapValue.fields||{});
+  return null;
+};
+const df=f=>Object.fromEntries(Object.entries(f||{}).map(([k,v])=>[k,dv(v)]));
+
+function setCatalog(items,ts,save){
+  P=items.map(p=>({
+    id:String(p.id||''), operator:normOp(p.operator), name:String(p.name||''),
+    days:num(p.days)||0, gb:num(p.gb)||0, category:String(p.category||''),
+    type:typeof p.type==='string'?p.type:null,
+    restricted:!!p.restricted, hidden:!!p.hidden,
+    price:num(p.price), area:num(p.area)||0,
+    originalPrice:num(p.originalPrice)||0, promoActive:!!p.promoActive,
+    description:p.description?String(p.description):''
+  })).filter(p=>p.id&&p.operator&&Number.isFinite(p.price)&&p.price>0);
+  IDX=new Map(P.map(p=>[p.id,p]));
+  loading=false; errMsg=''; updatedAt=ts;
+  if(save&&P.length){ try{ localStorage.setItem(CFG.ck,JSON.stringify({ts,items:P})); }catch(e){} }
+  render();
+}
+async function errText(r){
+  try{ const j=await r.json(); const e=Array.isArray(j)?j[0]?.error:j?.error; return e?.message||('HTTP '+r.status); }
+  catch(e){ return 'HTTP '+r.status; }
+}
+async function load(){
+  syncing=true; if(P.length) render();
+  const ctl=new AbortController();
+  const tm=setTimeout(()=>ctl.abort(),10000);
+  try{
+    const r=await fetch(`https://firestore.googleapis.com/v1/projects/${CFG.p}/databases/(default)/documents:runQuery?key=${CFG.k}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      signal:ctl.signal,
+      body:JSON.stringify({structuredQuery:{from:[{collectionId:'products'}],where:{fieldFilter:{field:{fieldPath:'active'},op:'EQUAL',value:{booleanValue:true}}}}})
+    });
+    clearTimeout(tm);
+    if(!r.ok) throw new Error(await errText(r));
+    const rows=await r.json();
+    const docs=(Array.isArray(rows)?rows:[])
+      .filter(x=>x.document&&x.document.fields)
+      .map(x=>({...df(x.document.fields), id:x.document.name.split('/').pop()}));
+    syncing=false;
+    setCatalog(docs,Date.now(),true);
+  }catch(err){
+    clearTimeout(tm); syncing=false;
+    console.error('Katalog gagal dimuat:',err);
+    if(!P.length){
+      loading=false;
+      errMsg=err.name==='AbortError'?'koneksi timeout 10 detik':(err.message||'gagal terhubung');
+    }
+    render();
+  }
+}
+
+/* ---------- Deteksi nomor (katalog) ---------- */
+$('qp').addEventListener('input',e=>{
+  const v=fmtPhone(e.target.value);
+  e.target.value=v;
+  $('qpClear').hidden=!v;
+  const d=detectOp(v), b=$('det');
+  if(d){
+    b.hidden=false;
+    b.textContent='✓ Terdeteksi: '+d;
+    b.style.background=TH[d].b; b.style.color=TH[d].t;
+    if(d!==st.last){
+      st.last=d; st.op=d; st.auto=true; st.feat='all'; st.area=0; st.shown=24;
+      render();
+    }
+  }else{
+    b.hidden=true;
+    st.last=null;
+    if(st.auto){ st.op='Semua'; st.auto=false; st.shown=24; render(); }
+  }
+});
+$('qpClear').onclick=()=>{
+  $('qp').value=''; $('qpClear').hidden=true; $('det').hidden=true; st.last=null;
+  if(st.auto){ st.op='Semua'; st.auto=false; }
+  st.shown=24; render(); $('qp').focus();
+};
+
+/* ---------- Filter, pencarian, kontrol ---------- */
+let dt;
+$('search').addEventListener('input',()=>{
+  $('sClear').hidden=!$('search').value;
+  clearTimeout(dt);
+  dt=setTimeout(()=>{ st.shown=24; render(); },160);
+});
+$('sClear').onclick=()=>{ $('search').value=''; $('sClear').hidden=true; st.shown=24; render(); $('search').focus(); };
+$('ftog').onclick=()=>{
+  const collapsed=$('fs').classList.toggle('collapsed');
+  $('ftog').setAttribute('aria-expanded',String(!collapsed));
+};
+['sort','type','price','quota'].forEach(id=>$(id).addEventListener('change',()=>{ st.shown=24; render(); }));
+
+$('ops').onclick=e=>{
+  const b=e.target.closest('[data-op]'); if(!b) return;
+  Object.assign(st,{op:b.dataset.op,auto:false,last:null,feat:'all',area:0,shown:24});
+  render();
+};
+$('chips').onclick=e=>{
+  const b=e.target.closest('[data-d]'); if(!b) return;
+  st.days=+b.dataset.d; st.shown=24; render();
+};
+$('more').onclick=()=>{ st.shown+=24; render(); };
+
+function setFeat(k){
+  Object.assign(st,{feat:k,area:0,op:'Semua',days:0,auto:false,last:null,shown:24});
+  $('search').value=''; $('sClear').hidden=true;
+  $('type').value='all'; $('price').value='all'; $('quota').value='0';
+  render();
+  $('count').scrollIntoView({behavior:'smooth',block:'center'});
+}
+$('partner').onclick=e=>{ const b=e.target.closest('[data-feat]'); if(b) setFeat(b.dataset.feat); };
+$('areas').onclick=e=>{
+  const b=e.target.closest('[data-area]'); if(!b) return;
+  st.area=+b.dataset.area; st.shown=24; render();
+};
+$('clearFeat').onclick=()=>setFeat('all');
+
+$('cards').onclick=e=>{
+  if(e.target.closest('#reset')) return resetAll();
+  if(e.target.closest('#retry')){ errMsg=''; loading=true; render(); return load(); }
+  const cardEl=e.target.closest('.card[data-id]'); if(!cardEl) return;
+  const p=IDX.get(cardEl.dataset.id); if(!p) return;
+  const order=e.target.closest('.order');
+  if(order) return openOrder(p,order);
+  const t=e.target.closest('.terms');
+  if(t){
+    const d=cardEl.querySelector('.terms-d');
+    const open=d.hidden;
+    d.hidden=!open;
+    t.setAttribute('aria-expanded',String(open));
+  }
+};
+
+/* ---------- Modal pesanan ---------- */
+function savedPhone(){
+  try{ return normPhone(localStorage.getItem(CFG.pk)||''); }catch(e){ return ''; }
+}
+function checkMatch(){
+  const e=$('perr');
+  e.className='perr'; e.textContent='';
+  if(!sel) return;
+  const d=detectOp($('target').value);
+  if(!d) return;
+  if(d===sel.operator){
+    e.classList.add('ok'); e.textContent=`✓ Nomor sesuai (${d})`;
+  }else{
+    e.classList.add('warn'); e.textContent=`⚠️ Nomor terdeteksi sebagai ${d}. Pastikan paket ${sel.operator} ini memang sesuai.`;
+  }
+}
+function openOrder(p,trigger){
+  sel=p; lastTrig=trigger;
+  const t=TH[p.operator]||TH.Semua;
+  $('sum').innerHTML=`
+    <span class="opp" style="background:${t.b};color:${t.t}">${safe(p.operator)}</span>
+    <span class="mt" style="margin-left:6px">Kode: ${safe(p.id)}</span>
+    <div class="nm">${safe(p.name)}</div>
+    <div class="mt">Kuota: ${p.gb>0?p.gb.toLocaleString('id-ID')+' GB':'Paket'} • Masa aktif: ${p.days} hari${p.category==='Paket Akrab'?' • Area '+safe(p.area||'?'):''}</div>
+    <div class="pr"><span>Total Pembayaran</span><strong>${money(p.price)}</strong></div>`;
+  $('note').value='';
+  $('perr').className='perr'; $('perr').textContent='';
+
+  const q=normPhone($('qp').value);
+  $('target').value=q.length>=4?fmtPhone(q):'';
+
+  const sp=savedPhone(), chip=$('saved');
+  if(/^08\d{8,11}$/.test(sp)&&sp!==q){
+    chip.hidden=false; chip.textContent='📋 Gunakan nomor terakhir: '+fmtPhone(sp); chip.dataset.v=sp;
+  }else chip.hidden=true;
+
+  checkMatch();
+  $('modal').hidden=false;
+  document.body.classList.add('lock');
+  $('target').focus();
+}
+function closeOrder(){
+  $('modal').hidden=true;
+  document.body.classList.remove('lock');
+  sel=null;
+  if(lastTrig) lastTrig.focus();
+}
+$('target').addEventListener('input',e=>{ e.target.value=fmtPhone(e.target.value); checkMatch(); });
+$('saved').onclick=()=>{ $('target').value=fmtPhone($('saved').dataset.v); $('saved').hidden=true; checkMatch(); };
+$('mc').onclick=closeOrder;
+$('modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeOrder(); });
+document.addEventListener('keydown',e=>{
+  if($('modal').hidden) return;
+  if(e.key==='Escape') return closeOrder();
+  if(e.key==='Tab'){
+    const f=[...$('modal').querySelectorAll('button,input,textarea')].filter(x=>!x.hidden&&!x.disabled);
+    if(!f.length) return;
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+});
+
+function buildMsg(){
+  const n=normPhone($('target').value);
+  if(!/^08\d{8,11}$/.test(n)){
+    $('perr').className='perr';
+    $('perr').textContent='Masukkan nomor Indonesia yang valid, diawali 08 (10–13 digit).';
+    $('target').focus();
+    return null;
+  }
+  try{ localStorage.setItem(CFG.pk,n); }catch(e){}
+  const p=sel, note=$('note').value.trim();
+  return `Halo AYSA ALFAZA! 👋
+Saya ingin memesan paket data:
+
+Operator: ${p.operator}
+Paket: ${p.name}
+Kode: ${p.id}
+Kuota: ${p.gb} GB
+Masa aktif: ${p.days} hari${p.category==='Paket Akrab'?`\nArea: ${p.area}`:''}
+Harga: ${money(p.price)}
+Nomor tujuan: ${n}${note?`\nCatatan: ${note}`:''}
+
+Mohon konfirmasi ketersediaan, kecocokan paket, dan pembayaran. Terima kasih!`;
+}
+/* Membuka WhatsApp lewat link sementara: window.open dengan noopener selalu mengembalikan null,
+   sehingga fallback lama mengarahkan ulang halaman katalog. */
+$('send').onclick=()=>{
+  const m=buildMsg(); if(!m) return;
+  const a=document.createElement('a');
+  a.href='https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(m);
+  a.target='_blank'; a.rel='noopener noreferrer';
+  document.body.appendChild(a); a.click(); a.remove();
+  closeOrder();
+};
+$('copy').onclick=async()=>{
+  const m=buildMsg(); if(!m) return;
+  const b=$('copy'), orig=b.textContent;
+  let ok=false;
+  try{ await navigator.clipboard.writeText(m); ok=true; }
+  catch(e){
+    const t=document.createElement('textarea');
+    t.value=m; t.style.position='fixed'; t.style.opacity='0';
+    document.body.appendChild(t); t.select();
+    ok=document.execCommand('copy'); t.remove();
+  }
+  b.textContent=ok?'✓ Format pesanan tersalin!':'Gagal menyalin, coba lagi';
+  setTimeout(()=>{ b.textContent=orig; },2000);
+};
+
+/* ---------- Tombol kembali ke atas ---------- */
+const up=$('up');
+window.addEventListener('scroll',()=>up.classList.toggle('show',window.scrollY>380),{passive:true});
+up.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* ---------- Service worker ---------- */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').then(r=>r.update()).catch(()=>{});
+  });
+}
+
+/* ---------- Inisialisasi ---------- */
+try{
+  const c=JSON.parse(localStorage.getItem(CFG.ck)||'null');
+  if(c&&Array.isArray(c.items)&&c.items.length) setCatalog(c.items,c.ts||0,false);
+}catch(e){}
+render();
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0055b8">
+<title>Admin AYSA ALFAZA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--text:#0f172a;--muted:#64748b;--line:#dbe7f4;--accent:#0055b8;--green:#15803d;--danger:#b91c1c}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font:15px/1.5 'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--text);background:linear-gradient(180deg,#e6f1fc,#f4f8fd 45%,#f8fafc);-webkit-font-smoothing:antialiased}
+main{max-width:920px;margin:20px auto 60px;padding:0 16px}
+h1{font-size:22px;margin:0;font-weight:800}
+h1 span{color:var(--accent)}
+h2{font-size:17px;margin:0;font-weight:800}
+.sub{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.back{color:var(--accent);font-weight:700;text-decoration:none;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:14px 0;box-shadow:0 4px 16px rgba(15,23,42,.04)}
+.narrow{max-width:420px;margin:40px auto}
+.center{text-align:center;color:var(--muted)}
+details>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"▾";color:var(--muted);font-size:18px}
+details[open]>summary::after{content:"▴"}
+details[open]>summary{margin-bottom:12px}
+label{display:block;font-weight:700;font-size:13px;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid #cbd5e1;border-radius:10px;background:#f8fafc;color:var(--text);font:inherit}
+input:focus,select:focus{outline:0;background:#fff;border-color:#0077ff;box-shadow:0 0 0 3px rgba(0,119,255,.14)}
+input[readonly]{background:#e2e8f0;color:#475569}
+input[type=file]{padding:8px;background:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.full{grid-column:1/-1}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;min-height:42px}
+.btn:hover:not(:disabled){filter:brightness(1.08)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sec{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd}
+.btn.danger{background:var(--danger)}
+.btn.small{padding:7px 11px;font-size:13px;min-height:36px}
+.link{background:none;border:0;color:var(--accent);font:inherit;font-weight:700;padding:0;cursor:pointer}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hint{font-size:12.5px;color:var(--muted);margin:8px 0}
+.err{color:var(--danger);font-weight:700;font-size:13px;min-height:18px;margin:8px 0 0}
+.banner{background:#fef9c3;border:1px solid #fde68a;border-radius:10px;padding:9px 12px;font-size:13.5px;margin-bottom:10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}
+.preview{white-space:pre-wrap;font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:10px 0;color:#334155;max-height:260px;overflow:auto}
+.formprev{font-size:13px;color:#334155;background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:9px 12px;margin-top:12px;min-height:20px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.who{font-size:13px;font-weight:700;color:var(--green)}
+.acts-h{display:flex;gap:8px;flex-wrap:wrap}
+.busy{position:sticky;top:8px;z-index:5;background:#fef9c3;border:1px solid #fde68a;border-radius:10px;padding:8px 12px;font-weight:700;font-size:13px;margin:10px 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.stat b{display:block;font-size:20px}
+.stat span{font-size:12px;color:var(--muted);font-weight:600}
+.toolbar{display:grid;grid-template-columns:1fr 170px 150px;gap:10px;margin:12px 0}
+.toolbar input,.toolbar select{margin:0}
+.item{border-top:1px solid var(--line);padding:13px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.item.off{opacity:.75}
+.info{min-width:0;flex:1 1 260px}
+.badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.badge{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+.on-b{background:#dcfce7;color:#15803d}
+.off-b{background:#f1f5f9;color:#64748b}
+.promo-b{background:#fef3c7;color:#b45309}
+.area-b{background:#e0f2fe;color:#0369a1}
+.cond-b{background:#fee2e2;color:#b91c1c}
+.title{font-weight:700}
+.meta{font-size:12.5px;color:var(--muted)}
+.item-acts{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start}
+.count{font-size:13px;color:var(--muted);font-weight:600;margin-left:6px}
+.empty{color:var(--muted);padding:16px 0}
+.toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;display:grid;gap:8px;z-index:50;width:min(92vw,420px)}
+.toast{background:#0f172a;color:#fff;padding:11px 14px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 10px 30px rgba(15,23,42,.25);white-space:pre-wrap}
+.toast.err{background:var(--danger)}
+dialog{border:0;border-radius:18px;padding:0;width:min(92vw,440px);box-shadow:0 20px 60px rgba(15,23,42,.3)}
+dialog::backdrop{background:rgba(15,23,42,.5)}
+.dlgbox{padding:20px;margin:0}
+.dlgbox h3{margin:0 0 8px;font-size:17px}
+.dlgbox p{margin:0 0 10px;color:#334155;font-size:14px;white-space:pre-wrap}
+.dlgbox .actions{justify-content:flex-end}
+@media(max-width:680px){
+  .grid{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .item-acts{width:100%}
+  .item-acts .btn{flex:1}
+}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <div>
+      <h1>🔐 Admin AYSA <span>ALFAZA</span></h1>
+      <p class="sub">Kelola katalog kuota langsung di Firebase.</p>
+    </div>
+    <a class="back" href="./index.html">← Katalog pembeli</a>
+  </div>
+
+  <section id="gate" class="card center"><p>Memeriksa sesi…</p></section>
+
+  <form id="loginForm" class="card narrow" hidden novalidate>
+    <h2>Masuk Admin</h2>
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="username" required>
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" required>
+    <div class="actions"><button id="loginBtn" class="btn" type="submit" style="width:100%">Masuk</button></div>
+    <p id="loginErr" class="err" role="alert"></p>
+  </form>
+
+  <div id="panel" hidden>
+    <div class="card" style="margin-top:14px">
+      <div class="bar">
+        <span id="who" class="who"></span>
+        <div class="acts-h">
+          <button id="backupBtn" class="btn sec small" type="button">⬇️ Backup</button>
+          <button id="logout" class="btn sec small" type="button">Keluar</button>
+        </div>
+      </div>
+      <p id="busy" class="busy" hidden>Memproses…</p>
+      <div id="stats" class="stats"></div>
+    </div>
+
+    <details class="card" id="formCard" open>
+      <summary><h2>Tambah / Ubah Produk</h2></summary>
+      <div id="editBanner" class="banner" hidden>
+        <span>Mengedit <b id="editName"></b></span>
+        <button type="button" id="cancelEdit" class="link">Batalkan</button>
+      </div>
+      <form id="form" novalidate>
+        <input type="hidden" id="oldId">
+        <div class="grid">
+          <div>
+            <label for="id">Kode produk (unik)</label>
+            <input id="id" maxlength="80" placeholder="TSL10" autocomplete="off">
+          </div>
+          <div>
+            <label for="operator">Operator</label>
+            <select id="operator">
+              <option>Telkomsel</option><option>Indosat</option><option>XL</option><option>AXIS</option><option>Tri</option><option>Smartfren</option><option>by.U</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="name">Nama paket</label>
+            <input id="name" maxlength="200" placeholder="Kuota 10 GB">
+          </div>
+          <div>
+            <label for="category">Kategori</label>
+            <input id="category" list="cats" maxlength="100" placeholder="Paket Internet">
+            <datalist id="cats">
+              <option value="Paket Internet"><option value="Paket Akrab"><option value="XL Spesial Harian"><option value="Masa Aktif">
+            </datalist>
+          </div>
+          <div>
+            <label for="gb">Kuota (GB)</label>
+            <input id="gb" type="number" step="0.01" min="0" placeholder="10">
+          </div>
+          <div>
+            <label for="days">Masa aktif (hari)</label>
+            <input id="days" type="number" min="1" step="1" placeholder="30">
+          </div>
+          <div>
+            <label for="price">Harga jual (Rp)</label>
+            <input id="price" type="number" min="0" step="1" placeholder="25000">
+          </div>
+          <div>
+            <label for="originalPrice">Harga coret (Rp, opsional)</label>
+            <input id="originalPrice" type="number" min="0" step="1" value="0">
+          </div>
+          <div>
+            <label for="promoActive">Label promo</label>
+            <select id="promoActive">
+              <option value="false">Normal (tanpa coret)</option>
+              <option value="true">Promo harga coret aktif</option>
+            </select>
+          </div>
+          <div>
+            <label for="area">Area (khusus Paket Akrab)</label>
+            <select id="area">
+              <option value="0">Non-area / semua</option><option value="1">Area 1</option><option value="2">Area 2</option><option value="3">Area 3</option><option value="4">Area 4</option>
+            </select>
+          </div>
+          <div>
+            <label for="restricted">Jenis ketentuan</label>
+            <select id="restricted">
+              <option value="false">Paket umum</option>
+              <option value="true">Bersyarat / zona</option>
+            </select>
+          </div>
+          <div>
+            <label for="active">Status tampil</label>
+            <select id="active">
+              <option value="true">Aktif (tampil di katalog)</option>
+              <option value="false">Nonaktif (disembunyikan)</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="description">Syarat / keterangan (opsional)</label>
+            <input id="description" maxlength="300" placeholder="Contoh: Berlaku nasional 24 jam">
+          </div>
+        </div>
+        <div id="formPreview" class="formprev">Isi form untuk melihat tampilan di katalog pembeli.</div>
+        <div class="actions">
+          <button id="saveBtn" class="btn" type="submit">Simpan Produk</button>
+          <button id="resetBtn" class="btn sec" type="button">Form baru</button>
+        </div>
+      </form>
+    </details>
+
+    <details class="card" id="importCard">
+      <summary><h2>📦 Impor JSON Produk</h2></summary>
+      <p class="hint">Produk dicocokkan lewat kode. Field yang tidak ada di JSON tidak akan diubah. Produk yang sudah sama persis dilewati. Lihat pratinjau sebelum mengimpor.</p>
+      <label for="jsonFile">File katalog (.json)</label>
+      <input id="jsonFile" type="file" accept=".json,application/json">
+      <pre id="importPreview" class="preview">Belum ada file dipilih.</pre>
+      <div class="actions">
+        <button id="importBtn" class="btn" type="button" disabled>Impor</button>
+        <button id="activateBulk" class="btn sec" type="button" disabled>Aktifkan dari JSON</button>
+      </div>
+      <p class="hint">"Aktifkan dari JSON" hanya mengubah status produk yang ada di database dan ditandai Aktif di file.</p>
+    </details>
+
+    <section class="card">
+      <h2>Daftar Produk <span id="listCount" class="count"></span></h2>
+      <div class="toolbar">
+        <input id="q" type="search" placeholder="🔎 Cari kode, nama, atau operator…" aria-label="Cari produk">
+        <select id="opF" aria-label="Filter operator">
+          <option value="Semua">Semua operator</option>
+          <option>Telkomsel</option><option>Indosat</option><option>XL</option><option>AXIS</option><option>Tri</option><option>Smartfren</option><option>by.U</option>
+        </select>
+        <select id="stF" aria-label="Filter status">
+          <option value="all">Semua status</option>
+          <option value="active">Aktif saja</option>
+          <option value="inactive">Nonaktif saja</option>
+        </select>
+      </div>
+      <div id="list"></div>
+    </section>
+  </div>
+</main>
+
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+<dialog id="dlg">
+  <form method="dialog" class="dlgbox">
+    <h3 id="dlgTitle"></h3>
+    <p id="dlgBody"></p>
+    <label id="dlgTypeLabel" for="dlgType" hidden></label>
+    <input id="dlgType" autocomplete="off" hidden>
+    <div class="actions">
+      <button class="btn sec" value="cancel" type="submit">Batal</button>
+      <button id="dlgOk" class="btn" value="ok" type="submit">OK</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+import { initializeFirestore, collection, doc, getDocs, setDoc, deleteDoc, writeBatch } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+const ADMIN_UID = 'SLjqY5QHVqdjZS8Pv467193MVxf1';
+const OPS = ['Telkomsel', 'Indosat', 'XL', 'AXIS', 'Tri', 'Smartfren', 'by.U'];
+
+const app = initializeApp({
+  apiKey: 'AIzaSyBZht1cTG__sVLhP8T-6jRctG8MeOGJ7Qw',
+  authDomain: 'aysa-alfaza.firebaseapp.com',
+  projectId: 'aysa-alfaza',
+  storageBucket: 'aysa-alfaza.firebasestorage.app',
+  messagingSenderId: '1081480695574',
+  appId: '1:1081480695574:web:0e8704e9bdfc314fff8a37'
+});
+const auth = getAuth(app);
+const db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
+
+const $ = id => document.getElementById(id);
+const N = v => Number(v) || 0;
+const rp = n => 'Rp' + Math.round(N(n)).toLocaleString('id-ID');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normOp = raw => {
+  const s = String(raw ?? '').trim(), l = s.toLowerCase();
+  if (['telkomsel', 'tsel'].includes(l)) return 'Telkomsel';
+  if (['indosat', 'im3', 'isat'].includes(l)) return 'Indosat';
+  if (['xl', 'xl axiata'].includes(l)) return 'XL';
+  if (l === 'axis') return 'AXIS';
+  if (['tri', '3', 'three'].includes(l)) return 'Tri';
+  if (['smartfren', 'sf'].includes(l)) return 'Smartfren';
+  if (['by.u', 'byu', 'by u'].includes(l)) return 'by.U';
+  return s;
+};
+const ERR = {
+  'auth/invalid-credential': 'Email atau password salah.',
+  'auth/wrong-password': 'Email atau password salah.',
+  'auth/user-not-found': 'Email atau password salah.',
+  'auth/invalid-email': 'Format email tidak valid.',
+  'auth/too-many-requests': 'Terlalu banyak percobaan. Coba lagi beberapa menit.',
+  'auth/network-request-failed': 'Koneksi internet bermasalah.',
+  'permission-denied': 'Akses ditolak. Akun ini tidak punya izin admin.',
+  'unavailable': 'Server Firebase tidak dapat dihubungi. Coba lagi.'
+};
+const emsg = e => ERR[e?.code] || (String(e?.message || '').includes('permission') ? ERR['permission-denied'] : 'Terjadi kesalahan: ' + (e?.message || e));
+
+let products = [], byId = new Map(), dirty = false, importPlan = null;
+
+/* ---------- UI helpers ---------- */
+function toast(msg, type = 'ok') {
+  const t = document.createElement('div');
+  t.className = 'toast' + (type === 'err' ? ' err' : '');
+  t.textContent = msg;
+  $('toasts').appendChild(t);
+  setTimeout(() => t.remove(), type === 'err' ? 6000 : 3500);
+}
+function ask({ title, body, ok = 'Lanjutkan', danger = false, typed = null }) {
+  return new Promise(resolve => {
+    const d = $('dlg'), ti = $('dlgType'), okBtn = $('dlgOk');
+    $('dlgTitle').textContent = title;
+    $('dlgBody').textContent = body;
+    ti.hidden = !typed; ti.value = '';
+    $('dlgTypeLabel').hidden = !typed;
+    if (typed) $('dlgTypeLabel').textContent = `Ketik ${typed} untuk konfirmasi`;
+    okBtn.textContent = ok;
+    okBtn.className = danger ? 'btn danger' : 'btn';
+    okBtn.onclick = e => {
+      if (typed && ti.value.trim() !== typed) { e.preventDefault(); ti.focus(); }
+    };
+    const onClose = () => {
+      d.removeEventListener('close', onClose);
+      resolve(d.returnValue === 'ok' && (!typed || ti.value.trim() === typed));
+    };
+    d.addEventListener('close', onClose);
+    d.showModal();
+    if (typed) ti.focus();
+  });
+}
+function busy(on) {
+  $('panel').inert = on;
+  $('busy').hidden = !on;
+  if (on) $('busy').textContent = 'Memproses…';
+}
+async function commit(ops, label) {
+  for (let i = 0; i < ops.length; i += 450) {
+    const batch = writeBatch(db);
+    for (const o of ops.slice(i, i + 450)) batch.set(o.ref, o.data, { merge: true });
+    await batch.commit();
+    $('busy').textContent = `${label} ${Math.min(i + 450, ops.length)} / ${ops.length}…`;
+  }
+}
+
+/* ---------- Auth ---------- */
+function showLogin() {
+  $('gate').hidden = true;
+  $('loginForm').hidden = false;
+  $('panel').hidden = true;
+}
+$('loginForm').onsubmit = async e => {
+  e.preventDefault();
+  $('loginErr').textContent = '';
+  const b = $('loginBtn');
+  b.disabled = true; b.textContent = 'Memproses…';
+  try {
+    await signInWithEmailAndPassword(auth, $('email').value.trim(), $('password').value);
+    $('password').value = '';
+  } catch (err) {
+    $('loginErr').textContent = emsg(err);
+  } finally {
+    b.disabled = false; b.textContent = 'Masuk';
+  }
+};
+$('logout').onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, async user => {
+  if (user && user.uid !== ADMIN_UID) {
+    await signOut(auth);
+    showLogin();
+    $('loginErr').textContent = 'Akun ini tidak memiliki akses admin.';
+    return;
+  }
+  if (user) {
+    $('gate').hidden = true;
+    $('loginForm').hidden = true;
+    $('panel').hidden = false;
+    $('who').textContent = '✓ Login: ' + (user.email || 'Admin');
+    await load();
+  } else {
+    products = []; byId = new Map();
+    resetForm(); resetImport();
+    showLogin();
+  }
+});
+
+/* ---------- Daftar produk ---------- */
+async function load() {
+  try {
+    const snap = await getDocs(collection(db, 'products'));
+    products = snap.docs.map(d => ({ ...d.data(), id: d.id }))
+      .sort((a, b) => normOp(a.operator).localeCompare(normOp(b.operator)) || N(a.price) - N(b.price));
+    byId = new Map(products.map(p => [p.id, p]));
+    renderStats();
+    renderList();
+  } catch (e) {
+    toast('Gagal membaca produk: ' + emsg(e), 'err');
+  }
+}
+function renderStats() {
+  const active = products.filter(p => p.active).length;
+  const promo = products.filter(p => p.promoActive && N(p.originalPrice) > N(p.price)).length;
+  $('stats').innerHTML = [['Total', products.length], ['Aktif', active], ['Nonaktif', products.length - active], ['Promo', promo]]
+    .map(([l, v]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('');
+}
+function row(p) {
+  const promo = p.promoActive && N(p.originalPrice) > N(p.price);
+  const id = esc(p.id);
+  return `<div class="item${p.active ? '' : ' off'}">
+    <div class="info">
+      <div class="badges">
+        <span class="badge ${p.active ? 'on-b' : 'off-b'}">${p.active ? 'Aktif' : 'Nonaktif'}</span>
+        ${promo ? `<span class="badge promo-b">Promo · <s>${rp(p.originalPrice)}</s></span>` : ''}
+        ${N(p.area) > 0 ? `<span class="badge area-b">Area ${esc(p.area)}</span>` : ''}
+        ${p.restricted ? '<span class="badge cond-b">Bersyarat</span>' : ''}
+      </div>
+      <div class="title">${esc(normOp(p.operator))} • ${esc(p.name)}</div>
+      <div class="meta">${id} · ${N(p.gb)} GB · ${N(p.days)} hari · <strong>${rp(p.price)}</strong></div>
+      ${p.description ? `<div class="meta">ℹ ${esc(p.description)}</div>` : ''}
+    </div>
+    <div class="item-acts">
+      <button class="btn sec small" type="button" data-act="toggle" data-id="${id}">${p.active ? 'Nonaktifkan' : 'Aktifkan'}</button>
+      <button class="btn sec small" type="button" data-act="edit" data-id="${id}">Edit</button>
+      <button class="btn danger small" type="button" data-act="del" data-id="${id}">Hapus</button>
+    </div>
+  </div>`;
+}
+function renderList() {
+  const q = $('q').value.trim().toLowerCase(), op = $('opF').value, st = $('stF').value;
+  const L = products.filter(p =>
+    (op === 'Semua' || normOp(p.operator) === op) &&
+    (st === 'all' || (st === 'active') === !!p.active) &&
+    `${p.id} ${p.name} ${p.operator} ${p.category || ''}`.toLowerCase().includes(q));
+  $('listCount').textContent = `${L.length} / ${products.length}`;
+  $('list').innerHTML = L.length ? L.map(row).join('') : '<p class="empty">Tidak ada produk yang cocok.</p>';
+}
+['q', 'opF', 'stF'].forEach(id => $(id).addEventListener(id === 'q' ? 'input' : 'change', renderList));
+
+$('list').onclick = e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const p = byId.get(b.dataset.id); if (!p) return;
+  if (b.dataset.act === 'edit') fillForm(p);
+  if (b.dataset.act === 'toggle') toggleActive(p);
+  if (b.dataset.act === 'del') removeProduct(p);
+};
+async function toggleActive(p) {
+  const val = !p.active;
+  busy(true);
+  try {
+    await setDoc(doc(db, 'products', p.id), { active: val }, { merge: true });
+    toast(`${p.name} ${val ? 'diaktifkan' : 'dinonaktifkan'}.`);
+    await load();
+  } catch (e) {
+    toast(emsg(e), 'err');
+  } finally { busy(false); }
+}
+async function removeProduct(p) {
+  const ok = await ask({
+    title: 'Hapus produk?',
+    body: `"${p.name}" (${p.id}) akan dihapus permanen dari database.`,
+    ok: 'Hapus', danger: true
+  });
+  if (!ok) return;
+  busy(true);
+  try {
+    await deleteDoc(doc(db, 'products', p.id));
+    toast('Produk dihapus.');
+    await load();
+  } catch (e) {
+    toast(emsg(e), 'err');
+  } finally { busy(false); }
+}
+
+/* ---------- Form ---------- */
+function readForm() {
+  const id = $('id').value.trim();
+  if (!/^[A-Za-z0-9_-]{1,80}$/.test(id)) return 'Kode produk hanya boleh huruf, angka, _ dan - (maks. 80 karakter).';
+  const name = $('name').value.trim();
+  if (!name) return 'Nama paket wajib diisi.';
+  const gb = Number($('gb').value), days = Number($('days').value), price = Number($('price').value);
+  const orig = Number($('originalPrice').value) || 0;
+  if ($('gb').value === '' || !(gb >= 0)) return 'Kuota (GB) wajib diisi dan tidak boleh negatif.';
+  if (!Number.isInteger(days) || days < 1) return 'Masa aktif harus bilangan bulat minimal 1 hari.';
+  if ($('price').value === '' || !(price >= 0)) return 'Harga jual wajib diisi.';
+  const promo = $('promoActive').value === 'true';
+  if (promo && orig <= price) return 'Untuk promo, harga coret harus lebih besar dari harga jual.';
+  return {
+    id,
+    data: {
+      operator: $('operator').value,
+      name,
+      category: $('category').value.trim().slice(0, 100) || 'Paket Internet',
+      gb, days,
+      price: Math.round(price),
+      originalPrice: Math.round(orig),
+      promoActive: promo,
+      area: Number($('area').value) || 0,
+      restricted: $('restricted').value === 'true',
+      active: $('active').value === 'true',
+      description: $('description').value.trim().slice(0, 300)
+    }
+  };
+}
+function updatePreview() {
+  const r = readForm(), el = $('formPreview');
+  if (typeof r === 'string') { el.textContent = r; el.style.color = '#b91c1c'; return; }
+  el.style.color = '';
+  const d = r.data;
+  el.innerHTML = `Tampilan pembeli: <b>${d.gb ? d.gb.toLocaleString('id-ID') + ' GB' : 'Paket'}</b> • ${d.days} hari • <b>${rp(d.price)}</b>` +
+    (d.promoActive ? ` <s>${rp(d.originalPrice)}</s>` : '') +
+    (d.active ? '' : ' — <span style="color:#b91c1c">disembunyikan (nonaktif)</span>');
+}
+function fillForm(p) {
+  $('id').value = p.id; $('id').readOnly = true; $('oldId').value = p.id;
+  const op = normOp(p.operator);
+  $('operator').value = OPS.includes(op) ? op : OPS[0];
+  $('name').value = p.name || '';
+  $('category').value = p.category || '';
+  $('gb').value = N(p.gb);
+  $('days').value = N(p.days) || 1;
+  $('price').value = N(p.price);
+  $('originalPrice').value = N(p.originalPrice);
+  $('promoActive').value = String(!!p.promoActive);
+  $('area').value = String(N(p.area));
+  $('restricted').value = String(!!p.restricted);
+  $('active').value = String(!!p.active);
+  $('description').value = p.description || '';
+  $('editName').textContent = `${p.name} (${p.id})`;
+  $('editBanner').hidden = false;
+  $('saveBtn').textContent = 'Perbarui Produk';
+  $('formCard').open = true;
+  $('formCard').scrollIntoView({ behavior: 'smooth' });
+  dirty = false;
+  updatePreview();
+}
+function resetForm() {
+  $('form').reset();
+  $('oldId').value = ''; $('id').readOnly = false;
+  $('originalPrice').value = '0'; $('promoActive').value = 'false';
+  $('area').value = '0'; $('restricted').value = 'false'; $('active').value = 'true';
+  $('editBanner').hidden = true;
+  $('saveBtn').textContent = 'Simpan Produk';
+  dirty = false;
+  updatePreview();
+}
+$('form').addEventListener('input', () => { dirty = true; updatePreview(); });
+$('resetBtn').onclick = () => { if (!dirty || confirm('Buang perubahan di form?')) resetForm(); };
+$('cancelEdit').onclick = () => resetForm();
+$('form').onsubmit = async e => {
+  e.preventDefault();
+  const r = readForm();
+  if (typeof r === 'string') return toast(r, 'err');
+  if (!$('oldId').value && byId.has(r.id)) return toast('Kode produk sudah dipakai. Pilih kode lain.', 'err');
+  busy(true);
+  try {
+    await setDoc(doc(db, 'products', r.id), r.data, { merge: true });
+    toast('Produk berhasil disimpan.');
+    resetForm();
+    await load();
+  } catch (err) {
+    toast(emsg(err), 'err');
+  } finally { busy(false); }
+};
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && !$('panel').hidden) {
+    e.preventDefault();
+    $('form').requestSubmit();
+  }
+});
+window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------- Backup ---------- */
+$('backupBtn').onclick = async () => {
+  try {
+    const snap = await getDocs(collection(db, 'products'));
+    const data = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `AYSA-BACKUP-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast(`Backup ${data.length} produk diunduh.`);
+  } catch (e) {
+    toast('Backup gagal: ' + emsg(e), 'err');
+  }
+};
+
+/* ---------- Impor JSON ---------- */
+async function buildPlan(file) {
+  if (file.size > 5_000_000) throw new Error('file maksimal 5 MB.');
+  const arr = JSON.parse(await file.text());
+  if (!Array.isArray(arr)) throw new Error('format harus berupa array produk.');
+  if (arr.length > 2000) throw new Error('maksimal 2.000 produk per impor.');
+
+  const plan = { file: file.name, creates: [], updates: [], same: 0, invalid: 0, dup: 0, activate: [], deact: 0 };
+  const seen = new Set();
+
+  for (const p of arr) {
+    const id = String(p?.id ?? '').trim();
+    const operator = normOp(p?.operator);
+    const gb = Number(p?.gb), days = Number(p?.days), price = Number(p?.price);
+    const ok = /^[A-Za-z0-9_-]{1,80}$/.test(id) && OPS.includes(operator) &&
+      typeof p.name === 'string' && p.name.trim() && p.name.length <= 200 &&
+      Number.isFinite(gb) && gb >= 0 && Number.isInteger(days) && days > 0 &&
+      Number.isFinite(price) && price >= 0;
+    if (!ok) { plan.invalid++; continue; }
+    if (seen.has(id)) { plan.dup++; continue; }
+    seen.add(id);
+
+    // Hanya field yang benar-benar ada di JSON yang ditulis
+    const d = { operator, name: p.name.trim(), gb, days, price: Math.round(price) };
+    if (p.originalPrice !== undefined) d.originalPrice = Math.round(Number(p.originalPrice) || 0);
+    if (p.category !== undefined) d.category = String(p.category || '').trim().slice(0, 100) || 'Paket Internet';
+    if (p.area !== undefined) d.area = Number(p.area) || 0;
+    if (p.restricted !== undefined) d.restricted = !!p.restricted;
+    if (p.promoActive !== undefined) d.promoActive = !!p.promoActive;
+    if (p.active !== undefined) d.active = p.active === true;
+    if (p.description !== undefined) d.description = String(p.description || '').slice(0, 300);
+
+    const ex = byId.get(id);
+    if (!ex) {
+      const full = { category: 'Paket Internet', originalPrice: 0, area: 0, restricted: false, promoActive: false, active: false, description: '', ...d };
+      if (full.promoActive && full.originalPrice <= full.price) full.promoActive = false;
+      plan.creates.push({ id, data: full });
+      continue;
+    }
+    if (d.promoActive && (d.originalPrice ?? N(ex.originalPrice)) <= d.price) d.promoActive = false;
+
+    const changed = Object.keys(d).some(k => JSON.stringify(d[k]) !== JSON.stringify(ex[k] ?? null));
+    if (changed) {
+      plan.updates.push({ id, data: d });
+      if (d.active === false && ex.active) plan.deact++;
+    } else {
+      plan.same++;
+    }
+    if (d.active === true && !ex.active) plan.activate.push(id);
+  }
+  return plan;
+}
+function summary(p) {
+  const lines = [
+    `File: ${p.file}`,
+    `Produk baru: ${p.creates.length}`,
+    `Diperbarui: ${p.updates.length}`,
+    `Tidak berubah: ${p.same}`,
+    `Tidak valid: ${p.invalid}`,
+    `ID duplikat di file: ${p.dup}`
+  ];
+  if (p.deact) lines.push(`⚠️ Akan menonaktifkan ${p.deact} produk yang saat ini aktif`);
+  const sample = [
+    ...p.creates.slice(0, 3).map(x => `+ ${x.id} · ${x.data.name}`),
+    ...p.updates.slice(0, 3).map(x => `~ ${x.id} · ${x.data.name}`)
+  ];
+  if (sample.length) lines.push('', 'Contoh:', ...sample);
+  return lines.join('\n');
+}
+function setImportButtons() {
+  const p = importPlan, total = p ? p.creates.length + p.updates.length : 0;
+  $('importBtn').disabled = !total;
+  $('importBtn').textContent = total ? `Impor (${total} perubahan)` : 'Impor';
+  $('activateBulk').disabled = !(p && p.activate.length);
+}
+function resetImport() {
+  importPlan = null;
+  $('jsonFile').value = '';
+  $('importPreview').textContent = 'Belum ada file dipilih.';
+  setImportButtons();
+}
+$('jsonFile').onchange = async () => {
+  importPlan = null;
+  setImportButtons();
+  const f = $('jsonFile').files[0];
+  if (!f) { $('importPreview').textContent = 'Belum ada file dipilih.'; return; }
+  try {
+    importPlan = await buildPlan(f);
+    $('importPreview').textContent = summary(importPlan);
+    setImportButtons();
+  } catch (e) {
+    $('importPreview').textContent = 'Gagal membaca JSON: ' + e.message;
+  }
+};
+$('importBtn').onclick = async () => {
+  const p = importPlan; if (!p) return;
+  const total = p.creates.length + p.updates.length;
+  const ok = await ask({
+    title: 'Impor produk?',
+    body: `${p.creates.length} produk baru dan ${p.updates.length} produk diperbarui.` +
+      (p.deact ? `\n\n⚠️ ${p.deact} produk yang sekarang aktif akan dinonaktifkan.` : '') +
+      `\n\nPastikan sudah mengunduh backup.`,
+    ok: 'Impor', danger: p.deact > 0
+  });
+  if (!ok) return;
+  busy(true);
+  try {
+    await commit([...p.creates, ...p.updates].map(x => ({ ref: doc(db, 'products', x.id), data: x.data })), 'Mengimpor');
+    toast(`Impor selesai: ${total} perubahan tersimpan.`);
+    resetImport();
+    await load();
+  } catch (e) {
+    toast('Impor terhenti: ' + emsg(e) + '. Sebagian data mungkin sudah tersimpan, cek daftar lalu impor ulang.', 'err');
+    await load();
+  } finally { busy(false); }
+};
+$('activateBulk').onclick = async () => {
+  const p = importPlan; if (!p || !p.activate.length) return;
+  const ok = await ask({
+    title: 'Aktifkan produk dari JSON?',
+    body: `${p.activate.length} produk yang ada di database dan ditandai Aktif di file akan diaktifkan. Produk lain tidak disentuh.`,
+    ok: 'Aktifkan', typed: 'AKTIFKAN'
+  });
+  if (!ok) return;
+  busy(true);
+  try {
+    await commit(p.activate.map(id => ({ ref: doc(db, 'products', id), data: { active: true } })), 'Mengaktifkan');
+    toast(`${p.activate.length} produk diaktifkan.`);
+    resetImport();
+    await load();
+  } catch (e) {
+    toast(emsg(e), 'err');
+  } finally { busy(false); }
+};
+</script>
+</body>
+</html>
